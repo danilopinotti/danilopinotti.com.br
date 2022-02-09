@@ -1,13 +1,8 @@
 <template>
   <div class="flex w-full justify-center">
     <article class="prose">
-      <h1>{{ article.title }}</h1>
-      <p>{{ article.description }}</p>
-      <img :src="article.img" :alt="article.alt"/>
-      <p>Article last updated: {{ article.updatedAt }}</p>
-
+      <p>Data de publicação: {{ article.updatedAt }}</p>
       <nuxt-content :document="article"/>
-
       <BlogAuthor :author="article.author"/>
       <BlogPrevNext :prev="prev" :next="next"/>
     </article>

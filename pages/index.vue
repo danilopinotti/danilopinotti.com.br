@@ -4,7 +4,9 @@
       <div class="-my-8 divide-y-2 divide-gray-100">
         <div v-for="article of articles" :key="article.slug" class="py-8 flex flex-wrap md:flex-nowrap">
           <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-            <span class="mt-1 text-gray-500 text-sm">{{ article.createdAt }}</span>
+            <span class="mt-1 text-gray-500 text-sm">
+              {{ $formatDate(article.publishedAt) }}
+            </span>
           </div>
           <div class="md:flex-grow">
             <NuxtLink :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="text-2xl font-medium text-gray-900 title-font mb-2">{{article.title}}</NuxtLink>
@@ -29,8 +31,8 @@
 export default {
   async asyncData({$content, params}) {
     const articles = await $content('articles')
-      .only(['title', 'description', 'img', 'slug', 'author'])
-      .sortBy('createdAt', 'desc')
+      .only(['title', 'description', 'img', 'slug', 'author', 'publishedAt'])
+      .sortBy('publishedAt', 'desc')
       .fetch()
 
     return {

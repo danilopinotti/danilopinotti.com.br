@@ -1,6 +1,7 @@
 ---
 title: Dicas para aprender novas tecnologias
 description: 'Este texto é destinado para todos que querem aprender alguma tecnologia do zero, principalmente na área de desenvolvimento, que têm coisas novas todos os dias, e não sabe por onde começar.'
+publishedAt: 2017-01-07T23:00:00
 author:
   name: Danilo Pinotti
 ---

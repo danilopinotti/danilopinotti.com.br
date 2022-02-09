@@ -1,7 +1,7 @@
 ---
 title: Explicando operações Bitwise
-slug: explicando_operadores_bitwise
 description: 'O objetivo deste artigo é explicar alguns dos principais operadores bitwise da forma em que finalmente consegui entendê-los, e mostrar o caminho que eu segui para conseguir esclarecê-los na minha mente.'
+publishedAt: 2021-03-13T21:00:00
 author:
   name: Danilo Pinotti
 ---

@@ -1,6 +1,7 @@
 ---
 title: O Básico Sobre Expressões Regulares
 description: 'Expressão regular é uma forma de representar palavras, frases ou até parágrafos através de uma única notação. A aplicação de expressões regulares é praticamente infinita, basta encontrar os momentos certos para usá-las.'
+image: /images/articles/regex.jpeg
 publishedAt: 2017-02-06T21:00:00
 author:
   name: Danilo Pinotti
@@ -9,7 +10,7 @@ author:
 # O Básico Sobre Expressões Regulares
 O que são? Pra que servem? Podem mesmo me ajudar?
 
-![Regex](https://raw.githubusercontent.com/danilopinotti/blog-posts/master/assets/regex.jpeg "Expressões Regulares")
+![Regex](/images/articles/regex.jpeg "Expressões Regulares")
 
 ## O que são?
 
@@ -38,7 +39,7 @@ Um exemplo simples de expressão regular:
 
 A expressão acima foi escrita para “casar” com um CEP (código de endereçamento postal) onde possui 5 dígitos numéricos, um traço e logo após, mais 3 dígitos numéricos.
 
-![Exemplo de REGEX](https://github.com/danilopinotti/blog-posts/raw/master/assets/regex-1.png "Exemplo de regex")
+![Exemplo de REGEX](/images/articles/regex-1.png "Exemplo de regex")
 
 ## Componentes básicos
 

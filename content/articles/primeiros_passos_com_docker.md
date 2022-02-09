@@ -1,14 +1,14 @@
 ---
 title: Primeiros passos com Docker
 description: 'O principal objetivo desta postagem não é aprofundar no funcionamento interno do Docker, e sim nas definições básicas e nos primeiros passos para utilizá-lo.'
-image: ~/images/docker-logo.png
+image: /images/articles/docker-logo.png
 publishedAt: 2017-01-07T21:00:00
 author:
   name: Danilo Pinotti
 ---
 
 # Primeiros passos com Docker
-![Docker logo](https://github.com/danilopinotti/blog-posts/raw/master/assets/docker-logo.png "Docker")
+![Docker logo](/images/articles/docker-logo.png "Docker")
 
 O principal objetivo desta postagem não é aprofundar no funcionamento interno do Docker, quem sabe numa postagem futura, e sim nas definições básicas e nos passos iniciais para utilizá-lo.
 

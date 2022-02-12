@@ -1,3 +1,5 @@
+import getArticlesRoutes from "./utils/getArticlesRoutes";
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -96,5 +98,8 @@ export default {
   sitemap: {
     hostname: 'https://danilopinotti.com.br',
     gzip: true,
+    routes() {
+      return getArticlesRoutes();
+    },
   },
 }

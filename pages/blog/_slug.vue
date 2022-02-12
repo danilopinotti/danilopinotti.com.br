@@ -19,7 +19,7 @@ export default {
 
     const [prev, next] = await $content('articles')
       .only(['title', 'slug'])
-      .sortBy('createdAt', 'asc')
+      .sortBy('publishedAt', 'asc')
       .surround(params.slug)
       .fetch()
 

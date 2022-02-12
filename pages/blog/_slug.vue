@@ -1,20 +1,20 @@
 <template>
-  <div class="flex flex-wrap justify-center">
-    <div>
-      <div class="text-center">
-        <NuxtLink to="/" class="btn btn-link p-0 mr-2">Home</NuxtLink>
-        | <GoBack class="inline px-0 mx-2"></GoBack>
-      </div>
-      <div class="flex justify-center">
-        <article class="w-full prose lg:prose-lg prose-img:rounded-xl prose-headings:underline prose-a:text-blue-600">
-          <nuxt-content :document="article"/>
+  <div class="">
+    <div class="flex flex-wrap justify-center">
+      <div class="mt-0 md:mt-8">
+        <div class="flex flex-wrap  justify-center">
+          <article class="prose lg:prose-lg prose-img:rounded-xl prose-headings:underline prose-a:text-blue-600 ">
+            <nuxt-content :document="article"/>
 
-          <span class="justify-self-end text-gray-500 text-sm">Data de publicação: {{ $formatDate(article.publishedAt) }}</span>
-          <BlogAuthor :author="article.author"/>
-        </article>
-      </div>
-      <div>
-        <BlogPrevNext :prev="prev" :next="next"/>
+            <span class="justify-self-end text-gray-500 text-sm">Data de publicação: {{
+                $formatDate(article.publishedAt)
+              }}</span>
+            <BlogAuthor :author="article.author"/>
+          </article>
+        </div>
+        <div>
+          <BlogPrevNext :prev="prev" :next="next"/>
+        </div>
       </div>
     </div>
   </div>

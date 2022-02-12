@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <Nuxt></Nuxt>
+  <div class="bg-white">
+    <SharedLayoutHeader></SharedLayoutHeader>
+    <div>
+      <Nuxt></Nuxt>
+    </div>
   </div>
 </template>
 

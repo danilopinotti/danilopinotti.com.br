@@ -1,9 +1,11 @@
 <template>
   <section class="text-gray-600 body-font overflow-hidden">
-    <div class="container px-5 py-24 mx-auto">
+    <div class="container px-5 pt-4 pb-12 mx-auto">
       <div class="-my-8 divide-y-2 divide-gray-100">
-        <div v-for="article of articles" :key="article.slug" class="py-8 flex flex-wrap md:flex-nowrap flex-col md:flex-row">
-          <div class="w-full md:w-32 md:mb-0 mb-6 flex-shrink-0 flex flex-col justify-center items-center order-2 md:order-1">
+        <div v-for="article of articles" :key="article.slug"
+             class="py-8 flex flex-wrap md:flex-nowrap flex-col md:flex-row">
+          <div
+            class="w-full md:w-32 md:mb-0 mb-6 flex-shrink-0 flex flex-col justify-center items-center order-2 md:order-1">
             <span class="mt-1 text-gray-600 text-sm font-bold">
               {{ $formatDate(article.publishedAt) }}
             </span>
@@ -26,7 +28,9 @@
             </div>
           </div>
           <div class="w-full md:w-1/3 p-0 md:p-10 order-1 md:order-3" v-if="article.image">
-            <img :src="article.image" class="w-full" alt="">
+            <NuxtLink :to="{ name: 'blog-slug', params: { slug: article.slug } }">
+              <img :src="article.image" class="w-full" :alt="article.title">
+            </NuxtLink>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-white text-gray-800">
     <SharedLayoutHeader></SharedLayoutHeader>
     <div>
       <Nuxt></Nuxt>

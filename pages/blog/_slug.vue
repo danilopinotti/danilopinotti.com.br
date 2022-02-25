@@ -4,7 +4,7 @@
       <div class="flex flex-wrap justify-center">
         <article
           class="prose lg:prose-lg prose-slate prose-img:rounded-xl prose-pre:w-[300px] sm:prose-pre:w-[600px]
-            md:prose-pre:w-full prose-pre:overflow-auto prose-a:text-blue-600
+            md:prose-pre:w-full prose-pre:overflow-auto prose-a:text-blue-600 prose-headings:cursor-default
         ">
           <nuxt-content :document="article"/>
 
@@ -44,7 +44,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-
-</style>

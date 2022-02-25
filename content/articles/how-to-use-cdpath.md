@@ -11,7 +11,7 @@ author:
 When I'm using a Linux terminal, I am often browsing between folders, but, I am frequently browsing between the same
 folders.
 
-I'm a Software Developer and I have a folder named "Development" with all my projects, e.g:
+I'm a Software Developer and I have a folder named "Development" containing all my software projects, e.g:
 
 ```
 /home/danilopinotti/Development/blog
@@ -30,7 +30,7 @@ cd ~/Development/project1
 These commands take a little time to write, once I need do type `cd ~/Doc` -> then <kbd class="kbd kbd-sm">tab</kbd> ->
 then <kbd class="kbd kbd-sm">tab</kbd> -> then type `blog` and press <kbd class="kbd kbd-sm">enter</kbd>.
 
-Now, imagine if you could just type `blog` and then press <kbd class="kbd kbd-sm">enter</kbd>, whatever the folder
+Now, imagine if you could just type `cd blog` and then press <kbd class="kbd kbd-sm">enter</kbd>, whatever the folder
 you are currently in, and you "magically" go to `/home/danilopinotti/Development/blog` folder.
 
 It's possible (!) and now, I'll teach you how to do this introducing you to `cdpath`.

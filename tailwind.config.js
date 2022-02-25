@@ -13,4 +13,7 @@ module.exports = {
   daisyui: {
     logs: false,
   },
+  safelist: [
+    'kbd', 'kbd-sm'
+  ],
 }

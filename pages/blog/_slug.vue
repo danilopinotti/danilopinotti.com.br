@@ -5,6 +5,7 @@
         <article
           class="prose lg:prose-lg prose-slate prose-img:rounded-xl prose-pre:w-[300px] sm:prose-pre:w-[600px]
             md:prose-pre:w-full prose-pre:overflow-auto prose-a:text-blue-600 prose-headings:cursor-default
+            prose-code:break-all md:prose-code:break-normal
         ">
           <nuxt-content :document="article"/>
 

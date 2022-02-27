@@ -1,7 +1,7 @@
 ---
 title: How to easily browse through frequent folders
 description: When we are using a Linux terminal, we frequently browse through folders. This article will introduce a configuration that will facilitate browsing through your most frequent folders.
-publishedAt: 2022-02-28T21:00:00
+publishedAt: 2022-02-27T21:00:00
 author:
   name: Danilo Pinotti
 ---

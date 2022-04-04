@@ -57,7 +57,8 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -102,4 +103,14 @@ export default {
       return getArticlesRoutes();
     },
   },
+
+  robots: [
+    {
+      UserAgent: '*',
+      Allow: '/'
+    },
+    {
+      Sitemap: 'https://danilopinotti.com.br/sitemap.xml'
+    }
+  ]
 }

@@ -7,7 +7,7 @@
         </span>
       </NuxtLink>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center gap-3 md:gap-4 font-bold md:mr-4">
-        <NuxtLink class="hover:text-gray-900" to="/tools">
+        <NuxtLink class="hover:text-red-800" to="/tools">
           <fa icon="toolbox" class="mr-1"></fa>
           Tools
         </NuxtLink>

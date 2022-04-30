@@ -47,6 +47,7 @@ export default {
     '@nuxtjs/google-analytics',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/moment',
+    ['@nuxtjs/fontawesome', {component: 'fa'}]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -112,5 +113,9 @@ export default {
     {
       Sitemap: 'https://danilopinotti.com.br/sitemap.xml'
     }
-  ]
+  ],
+
+  fontawesome: {
+    icons: require('./icons').default
+  },
 }

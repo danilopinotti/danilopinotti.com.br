@@ -1,83 +1,136 @@
 <template>
   <div>
-    Calculate an estimate of the battery life time of a IoT device.
+    Calculate an estimate of the battery life time of a IoT devices.
 
-    <div class="mt-4">
-      <h2 class="text-lg font-bold">
-        <fa icon="battery-full" class="mr-1 text-green-600"></fa>
-        Battery
-      </h2>
-      <hr>
-      <div class="form-group">
-        <label class="label">
-          <span class="label-text">Battery Capacity (mAh)</span>
-        </label>
-        <label class="input-group">
-          <input type="number" step="100" class="input input-bordered text-right" v-model.number="batteryCapacityMAh">
-          <span>mAh</span>
-        </label>
-      </div>
-      <div class="form-group mt-4">
-        <label class="label">
-          <span class="label-text">Battery Self-discharging Rate (% per year)</span>
-        </label>
-        <label class="input-group">
-          <input type="number" step="1" min="0" max="100" class="input input-bordered text-right"
-                 v-model.number="batterySelfDischargingPercentageYear">
-          <span>% per year</span>
-        </label>
-      </div>
-    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="mt-4">
+        <div>
+          <h2 class="text-lg font-bold">
+            <fa icon="battery-full" class="mr-1 text-green-600"></fa>
+            Battery
+          </h2>
+          <hr>
+          <div class="form-group">
+            <label class="label">
+              <span class="label-text">Battery Capacity (mAh)</span>
+            </label>
+            <label class="input-group">
+              <input type="number" step="100" min="0" class="input input-bordered text-right"
+                     v-model.number="batteryCapacityMAh">
+              <span>mAh</span>
+            </label>
+          </div>
+          <div class="form-group mt-4">
+            <label class="label">
+              <span class="label-text">Battery Self-discharging Rate (% per year)</span>
+            </label>
+            <label class="input-group">
+              <input type="number" step="1" min="0" max="100" class="input input-bordered text-right"
+                     v-model.number="batterySelfDischargingPercentageYear">
+              <span>% per year</span>
+            </label>
+          </div>
+        </div>
 
-    <div class="mt-4">
-      <h2 class="text-lg font-bold">
-        <fa icon="lightbulb" class="mr-1 text-yellow-500"></fa>
-        Consumption in Active Mode
-      </h2>
-      <hr>
-      <div class="form-group">
-        <label class="label">
-          <span class="label-text">Average Current (mA)</span>
-        </label>
-        <label class="input-group">
-          <input type="number" step="0.01" class="input input-bordered text-right" v-model.number="activeAvgCurrentMa">
-          <span>mA</span>
-        </label>
-      </div>
-      <div class="form-group mt-4">
-        <label class="label">
-          <span class="label-text">Active Time (ms)</span>
-        </label>
-        <label class="input-group">
-          <input type="number" step="1" class="input input-bordered text-right" v-model.number="activeTimeMs">
-          <span>ms</span>
-        </label>
-      </div>
-    </div>
+        <div class="mt-4">
+          <h2 class="text-lg font-bold">
+            <fa icon="lightbulb" class="mr-1 text-yellow-500"></fa>
+            Consumption in Active Mode
+          </h2>
+          <hr>
+          <div class="form-group">
+            <label class="label">
+              <span class="label-text">Average Current (mA)</span>
+            </label>
+            <div class="flex items-left md:items-center flex-col md:flex-row">
+              <label class="input-group w-min">
+                <input type="number" step="0.01" min="0" class="input input-bordered text-right"
+                       v-model.number="activeAvgCurrentMa">
+                <span>mA</span>
+              </label>
+              <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 text-sm">
+                <div class="mr-2 rounded-md shadow-md p-3 text-center items-center">
+                  <strong>{{ (activeAvgCurrentMa * 1000).toFixed(2) }}</strong> µA
+                </div>
+                <div class="mr-2 rounded-md shadow-md p-3 text-center">
+                  <strong>{{ (activeAvgCurrentMa / 1000).toFixed(2) }}</strong> A
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-4">
+            <label class="label">
+              <span class="label-text">Active Time (ms)</span>
+            </label>
+            <div class="flex items-left md:items-center flex-col md:flex-row">
+              <label class="input-group w-min">
+                <input type="number" step="1" min="0" class="input input-bordered text-right" v-model.number="activeTimeMs">
+                <span>ms</span>
+              </label>
+              <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 md:grid-cols-3 text-sm">
+                <div class="mr-2 rounded-md shadow-md p-3 text-center">
+                  <strong>{{ (activeTimeMs / 1000).toFixed(2) }}</strong> Seconds
+                </div>
+                <div class="mr-2 rounded-md shadow-md p-3 text-center">
+                  <strong>{{ (activeTimeMs / 1000 / 60).toFixed(2) }}</strong> Minutes
+                </div>
+                <div class="mr-2 rounded-md shadow-md p-3 text-center align-middle">
+                  <strong>{{ (activeTimeMs / 1000 / 60 / 60).toFixed(2) }}</strong> Hours
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <div class="mt-4">
-      <h2 class="text-lg font-bold">
-        <fa icon="bed" class="mr-1 text-blue-800"></fa>
-        Consumption in Sleep Mode
-      </h2>
-      <hr>
-      <div class="form-group">
-        <label class="label">
-          <span class="label-text">Average Current (mA)</span>
-        </label>
-        <label class="input-group">
-          <input type="number" step="0.01" class="input input-bordered text-right" v-model.number="sleepAvgCurrentMa">
-          <span>mA</span>
-        </label>
-      </div>
-      <div class="form-group mt-4">
-        <label class="label">
-          <span class="label-text">Sleep Time (ms)</span>
-        </label>
-        <label class="input-group">
-          <input type="number" step="1" class="input input-bordered text-right" v-model.number="sleepTimeMs">
-          <span>ms</span>
-        </label>
+        <div class="mt-4">
+          <h2 class="text-lg font-bold">
+            <fa icon="bed" class="mr-1 text-blue-800"></fa>
+            Consumption in Sleep Mode
+          </h2>
+          <hr>
+          <div class="form-group">
+            <label class="label">
+              <span class="label-text">Average Current (mA)</span>
+            </label>
+            <div class="flex items-left md:items-center flex-col md:flex-row">
+              <label class="input-group w-min">
+                <input type="number" step="0.01" min="0" class="input input-bordered text-right"
+                       v-model.number="sleepAvgCurrentMa">
+                <span>mA</span>
+              </label>
+              <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 md:grid-cols-3 text-sm">
+                <div class="mr-2 rounded-md shadow-md p-3 text-center">
+                  <strong>{{ (sleepAvgCurrentMa * 1000).toFixed(2) }}</strong> µA
+                </div>
+                <div class="mr-2 rounded-md shadow-md p-3 text-center"><strong>
+                  {{ (sleepAvgCurrentMa / 1000).toFixed(2) }}</strong> A
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-4">
+            <label class="label">
+              <span class="label-text">Sleep Time (ms)</span>
+            </label>
+            <div class="flex items-left md:items-center flex-col md:flex-row">
+              <label class="input-group w-min">
+                <input type="number" step="1" min="0" class="input input-bordered text-right" v-model.number="sleepTimeMs">
+                <span>ms</span>
+              </label>
+              <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 md:grid-cols-3 text-sm">
+                <div class="mr-2 rounded-md shadow-md p-3 text-center">
+                  <strong>{{ (sleepTimeMs / 1000).toFixed(2) }}</strong> Seconds
+                </div>
+                <div class="mr-2 rounded-md shadow-md p-3 text-center">
+                  <strong>{{ (sleepTimeMs / 1000 / 60).toFixed(2) }}</strong> Minutes
+                </div>
+                <div class="mr-2 rounded-md shadow-md p-3 text-center">
+                  <strong>{{ (sleepTimeMs / 1000 / 60 / 60).toFixed(2) }}</strong> Hours
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="mt-4">
@@ -88,7 +141,7 @@
 
         <hr class="mb-3">
 
-        <div class="flex gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="stats shadow">
             <div class="stat">
               <div class="stat-title">Months</div>
@@ -101,7 +154,7 @@
             <div class="stat">
               <div class="stat-title">Seconds</div>
               <div class="stat-value">{{ Math.round(lifetimeSeconds).toLocaleString() }}</div>
-              <div class="stat-desc font-bold">21% more than last month</div>
+              <div class="stat-desc font-bold">{{ Math.round(lifetimeSeconds / 60).toLocaleString() }} Hours</div>
             </div>
           </div>
 
@@ -114,7 +167,8 @@
               </div>
               <div class="stat-desc font-bold">{{
                   (batteryPercentageConsumptionByDay * 30).toFixed(3)
-                }}% by Month</div>
+                }}% by Month
+              </div>
             </div>
           </div>
         </div>
@@ -135,8 +189,14 @@ export default {
     lifetimeSeconds() {
       let mAhWhenActive = this.activeAvgCurrentMa * (this.activeTimeMs / 3600000);
       let mAhWhenSleep = this.sleepAvgCurrentMa * (this.sleepTimeMs / 3600000);
-      let mAhCycle = mAhWhenActive + mAhWhenSleep;
       let cycleTimeH = (this.activeTimeMs + this.sleepTimeMs) / 3600000;
+
+      let mAhSelfDischargingByHour = this.batteryCapacityMAh * (this.batterySelfDischargingPercentageYear / 8760 / 100);
+      let mAhSelfDischargingByCycle = mAhSelfDischargingByHour / cycleTimeH;
+
+      console.log(mAhSelfDischargingByHour, mAhSelfDischargingByCycle);
+
+      let mAhCycle = mAhWhenActive + mAhWhenSleep + mAhSelfDischargingByCycle;
 
       let deviceCyclesBatteryCapacity = this.batteryCapacityMAh / mAhCycle;
       return deviceCyclesBatteryCapacity * cycleTimeH * 3600;
@@ -155,9 +215,8 @@ export default {
 
       const dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : "";
       const hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
-      const mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
-      const sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
-      return dDisplay + hDisplay + mDisplay + sDisplay;
+      const mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes") : "";
+      return dDisplay + hDisplay + mDisplay;
     },
   },
 

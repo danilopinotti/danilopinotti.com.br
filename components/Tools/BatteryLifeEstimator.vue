@@ -326,15 +326,15 @@ export default {
     return {
       batteryCapacityMAh: 2500,
       batterySelfDischargingPercentageYear: 0,
-      activeAvgCurrentMa: 109.197271,
-      activeTimeMs: 3877,
+      activeAvgCurrentMa: 100,
+      activeTimeMs: 400,
 
       occasionallyActiveEach: 0,
-      occasionallyActiveAvgCurrentMa: 109.197271,
-      occasionallyActiveTimeMs: 3877,
+      occasionallyActiveAvgCurrentMa: 200,
+      occasionallyActiveTimeMs: 11000,
 
-      sleepAvgCurrentMa: 0.025,
-      sleepTimeMs: 900000,
+      sleepAvgCurrentMa: 0.050,
+      sleepTimeMs: 150000,
     }
   },
 }

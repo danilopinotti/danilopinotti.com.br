@@ -24,11 +24,19 @@
             <label class="label">
               <span class="label-text">Battery Self-Discharging Rate (% per year)</span>
             </label>
-            <label class="input-group">
-              <input type="number" step="1" min="0" max="100" class="input input-bordered text-right"
-                     v-model.number="batterySelfDischargingPercentageYear">
-              <span>% per year</span>
-            </label>
+            <div class="flex items-left md:items-center flex-col md:flex-row">
+              <label class="input-group w-min">
+                <input type="number" step="1" min="0" max="100" class="input input-bordered text-right"
+                       v-model.number="batterySelfDischargingPercentageYear">
+                <span class="whitespace-nowrap">% per year</span>
+              </label>
+
+              <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 text-sm">
+                <div class="mr-2 rounded-md shadow-md p-3 text-center items-center bg-white">
+                  like <strong>{{ (mAhSelfDischargingByHour*60).toFixed(2) }}</strong> mA constantly
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -85,7 +93,7 @@
           <div tabindex="0" class="mt-6 collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
             <input type="checkbox">
             <div class="collapse-title font-medium">
-              Set Occasional Consumption <br>
+              Set Occasionally Consumption <br>
               <span class="font-light text-xs">
                 Sometimes you read values in each iteration and, after a number of readings, you transmit them.
               </span>
@@ -98,7 +106,7 @@
                 <label class="input-group">
                   <span>1 time each</span>
                   <input type="number" step="1" min="0" class="input input-bordered text-right"
-                         v-model.number="occasionalActiveEach">
+                         v-model.number="occasionallyActiveEach">
                   <span>activations</span>
                 </label>
               </div>
@@ -110,15 +118,15 @@
                 <div class="flex items-left md:items-center flex-col md:flex-row">
                   <label class="input-group w-min">
                     <input type="number" step="0.01" min="0" class="input input-bordered text-right"
-                           v-model.number="occasionalActiveAvgCurrentMa">
+                           v-model.number="occasionallyActiveAvgCurrentMa">
                     <span>mA</span>
                   </label>
                   <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 text-sm">
-                    <div class="mr-2 rounded-md shadow-md p-3 text-center items-center">
-                      <strong>{{ (occasionalActiveAvgCurrentMa * 1000).toFixed(2) }}</strong> µA
+                    <div class="mr-2 rounded-md shadow-md p-3 text-center items-center bg-white">
+                      <strong>{{ (occasionallyActiveAvgCurrentMa * 1000).toFixed(2) }}</strong> µA
                     </div>
-                    <div class="mr-2 rounded-md shadow-md p-3 text-center">
-                      <strong>{{ (occasionalActiveAvgCurrentMa / 1000).toFixed(2) }}</strong> A
+                    <div class="mr-2 rounded-md shadow-md p-3 text-center bg-white">
+                      <strong>{{ (occasionallyActiveAvgCurrentMa / 1000).toFixed(2) }}</strong> A
                     </div>
                   </div>
                 </div>
@@ -131,18 +139,18 @@
                 <div class="flex items-left md:items-center flex-col md:flex-row">
                   <label class="input-group w-min">
                     <input type="number" step="1" min="0" class="input input-bordered text-right"
-                           v-model.number="occasionalActiveTimeMs">
+                           v-model.number="occasionallyActiveTimeMs">
                     <span>ms</span>
                   </label>
                   <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 md:grid-cols-3 text-sm">
-                    <div class="mr-2 rounded-md shadow-md p-3 text-center">
-                      <strong>{{ (occasionalActiveTimeMs / 1000).toFixed(2) }}</strong> Seconds
+                    <div class="mr-2 rounded-md shadow-md p-3 text-center bg-white">
+                      <strong>{{ (occasionallyActiveTimeMs / 1000).toFixed(2) }}</strong> Seconds
                     </div>
-                    <div class="mr-2 rounded-md shadow-md p-3 text-center">
-                      <strong>{{ (occasionalActiveTimeMs / 1000 / 60).toFixed(2) }}</strong> Minutes
+                    <div class="mr-2 rounded-md shadow-md p-3 text-center bg-white">
+                      <strong>{{ (occasionallyActiveTimeMs / 1000 / 60).toFixed(2) }}</strong> Minutes
                     </div>
-                    <div class="mr-2 rounded-md shadow-md p-3 text-center align-middle">
-                      <strong>{{ (occasionalActiveTimeMs / 1000 / 60 / 60).toFixed(2) }}</strong> Hours
+                    <div class="mr-2 rounded-md shadow-md p-3 text-center align-middle bg-white">
+                      <strong>{{ (occasionallyActiveTimeMs / 1000 / 60 / 60).toFixed(2) }}</strong> Hours
                     </div>
                   </div>
                 </div>
@@ -245,8 +253,8 @@
           <p>
             This was useful for you? Do you have a suggestion? Please, consider submit a PR on
             <a class="link"
-              target="_blank"
-              href="https://github.com/danilopinotti/danilopinotti.com.br/blob/master/components/Tools/BatteryLifeEstimator.vue">
+               target="_blank"
+               href="https://github.com/danilopinotti/danilopinotti.com.br/blob/master/components/Tools/BatteryLifeEstimator.vue">
               this project on GitHub
               <fa :icon="['fab', 'github']"></fa>
             </a>
@@ -270,19 +278,24 @@ export default {
       return 100 / this.lifetimeSeconds * 86400;
     },
 
+    occasionallyActiveFrequency() {
+      return 1 / this.occasionallyActiveEach;
+    },
+
     lifetimeSeconds() {
       let mAhWhenActive = this.activeAvgCurrentMa * (this.activeTimeMs / 3600000);
       let mAhWhenSleep = this.sleepAvgCurrentMa * (this.sleepTimeMs / 3600000);
 
       let cycleTimeInHours = (this.activeTimeMs + this.sleepTimeMs) / 3600000;
-      if (this.occasionalActiveEach !== 0) {
-        let mAhOccasionallyActive = this.occasionalActiveAvgCurrentMa * (this.occasionalActiveTimeMs / 3600000);
-        let activeTimeMedian = this.activeTimeMs * ((this.occasionalActiveEach - 1) / this.occasionalActiveEach)
-          + this.occasionalActiveTimeMs * (1 / this.occasionalActiveEach);
+
+      if (this.occasionallyActiveEach !== 0) {
+        let mAhOccasionallyActive = this.occasionallyActiveAvgCurrentMa * (this.occasionallyActiveTimeMs / 3600000);
+        let activeTimeMedian = this.activeTimeMs * (1 - this.occasionallyActiveFrequency)
+          + this.occasionallyActiveTimeMs * this.occasionallyActiveFrequency;
 
         cycleTimeInHours = (activeTimeMedian + this.sleepTimeMs) / 3600000;
-        mAhWhenActive = mAhWhenActive * ((this.occasionalActiveEach - 1) / this.occasionalActiveEach)
-          + mAhOccasionallyActive * (1 / this.occasionalActiveEach);
+        mAhWhenActive = mAhWhenActive * (1 - this.occasionallyActiveFrequency)
+          + mAhOccasionallyActive * this.occasionallyActiveFrequency;
       }
 
       let mAhSelfDischargingByCycle = this.mAhSelfDischargingByHour / cycleTimeInHours;
@@ -301,7 +314,6 @@ export default {
       const d = Math.floor(seconds / (3600 * 24));
       const h = Math.floor(seconds % (3600 * 24) / 3600);
       const m = Math.floor(seconds % 3600 / 60);
-      const s = Math.floor(seconds % 60);
 
       const dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : "";
       const hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
@@ -317,9 +329,9 @@ export default {
       activeAvgCurrentMa: 109.197271,
       activeTimeMs: 3877,
 
-      occasionalActiveEach: 3,
-      occasionalActiveAvgCurrentMa: 109.197271,
-      occasionalActiveTimeMs: 3877,
+      occasionallyActiveEach: 0,
+      occasionallyActiveAvgCurrentMa: 109.197271,
+      occasionallyActiveTimeMs: 3877,
 
       sleepAvgCurrentMa: 0.025,
       sleepTimeMs: 900000,

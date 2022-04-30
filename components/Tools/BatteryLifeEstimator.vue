@@ -1,12 +1,160 @@
 <template>
   <div>
-    Calculate battery life
+    Calculate an estimate of the battery life time of a IoT device.
+
+    <div class="mt-4">
+      <h2 class="text-lg font-bold">
+        <fa icon="battery-full" class="mr-1 text-green-600"></fa>
+        Battery
+      </h2>
+      <hr>
+      <div class="form-group">
+        <label class="label">
+          <span class="label-text">Battery Capacity (mAh)</span>
+        </label>
+        <label class="input-group">
+          <input type="number" step="100" class="input input-bordered text-right" v-model.number="batteryCapacityMAh">
+          <span>mAh</span>
+        </label>
+      </div>
+      <div class="form-group mt-4">
+        <label class="label">
+          <span class="label-text">Battery Self-discharging Rate (% per year)</span>
+        </label>
+        <label class="input-group">
+          <input type="number" step="1" min="0" max="100" class="input input-bordered text-right"
+                 v-model.number="batterySelfDischargingPercentageYear">
+          <span>% per year</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <h2 class="text-lg font-bold">
+        <fa icon="lightbulb" class="mr-1 text-yellow-500"></fa>
+        Consumption in Active Mode
+      </h2>
+      <hr>
+      <div class="form-group">
+        <label class="label">
+          <span class="label-text">Average Current (mA)</span>
+        </label>
+        <label class="input-group">
+          <input type="number" step="0.01" class="input input-bordered text-right" v-model.number="activeAvgCurrentMa">
+          <span>mA</span>
+        </label>
+      </div>
+      <div class="form-group mt-4">
+        <label class="label">
+          <span class="label-text">Active Time (ms)</span>
+        </label>
+        <label class="input-group">
+          <input type="number" step="1" class="input input-bordered text-right" v-model.number="activeTimeMs">
+          <span>ms</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <h2 class="text-lg font-bold">
+        <fa icon="bed" class="mr-1 text-blue-800"></fa>
+        Consumption in Sleep Mode
+      </h2>
+      <hr>
+      <div class="form-group">
+        <label class="label">
+          <span class="label-text">Average Current (mA)</span>
+        </label>
+        <label class="input-group">
+          <input type="number" step="0.01" class="input input-bordered text-right" v-model.number="sleepAvgCurrentMa">
+          <span>mA</span>
+        </label>
+      </div>
+      <div class="form-group mt-4">
+        <label class="label">
+          <span class="label-text">Sleep Time (ms)</span>
+        </label>
+        <label class="input-group">
+          <input type="number" step="1" class="input input-bordered text-right" v-model.number="sleepTimeMs">
+          <span>ms</span>
+        </label>
+      </div>
+
+      <div class="mt-4">
+        <h2 class="text-lg font-bold">
+          <fa icon="hourglass" class="mr-1 text-purple-700"></fa>
+          Estimations
+        </h2>
+
+        <hr class="mb-3">
+
+        <div class="flex gap-4">
+          <div class="stats shadow">
+            <div class="stat">
+              <div class="stat-title">Months</div>
+              <div class="stat-value">{{ (Math.round(lifetimeMonths * 100) / 100).toLocaleString() }}</div>
+              <div class="stat-desc">{{ lifetimeDhm }}</div>
+            </div>
+          </div>
+
+          <div class="stats shadow">
+            <div class="stat">
+              <div class="stat-title">Seconds</div>
+              <div class="stat-value">{{ Math.round(lifetimeSeconds).toLocaleString() }}</div>
+              <div class="stat-desc">21% more than last month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "BatteryLifeEstimator"
+  name: "BatteryLifeEstimator",
+
+  computed: {
+    lifetimeSeconds() {
+      let mAhWhenActive = this.activeAvgCurrentMa * (this.activeTimeMs / 3600000);
+      let mAhWhenSleep = this.sleepAvgCurrentMa * (this.sleepTimeMs / 3600000);
+      let mAhCycle = mAhWhenActive + mAhWhenSleep;
+      let cycleTimeH = (this.activeTimeMs + this.sleepTimeMs) / 3600000;
+
+      let deviceCyclesBatteryCapacity = this.batteryCapacityMAh / mAhCycle;
+      return deviceCyclesBatteryCapacity * cycleTimeH * 3600;
+    },
+
+    lifetimeMonths() {
+      return this.lifetimeSeconds / 2629746;
+    },
+
+    lifetimeDhm() {
+      let seconds = Number(this.lifetimeSeconds);
+      const d = Math.floor(seconds / (3600 * 24));
+      const h = Math.floor(seconds % (3600 * 24) / 3600);
+      const m = Math.floor(seconds % 3600 / 60);
+      const s = Math.floor(seconds % 60);
+
+      const dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : "";
+      const hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+      const mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+      const sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+      return dDisplay + hDisplay + mDisplay + sDisplay;
+    },
+  },
+
+  data() {
+    return {
+
+      batteryCapacityMAh: 2500,
+      batterySelfDischargingPercentageYear: 0,
+      activeAvgCurrentMa: 109.197271,
+      activeTimeMs: 3877,
+      sleepAvgCurrentMa: 0.025,
+      sleepTimeMs: 900000,
+    }
+  },
 }
 </script>
 

@@ -24,7 +24,7 @@
             </h2>
             <p>Calculate an estimate of the battery life of IoT devices.</p>
             <div class="card-actions justify-end">
-              <NuxtLink to="/tools/device-battery-life-estimator" class="btn btn-primary">Open Tool</NuxtLink>
+              <NuxtLink to="/tools/device-battery-life-estimator" class="btn btn-primary btn-block">Open Tool</NuxtLink>
             </div>
           </div>
         </div>

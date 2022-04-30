@@ -93,7 +93,7 @@
             <div class="stat">
               <div class="stat-title">Months</div>
               <div class="stat-value">{{ (Math.round(lifetimeMonths * 100) / 100).toLocaleString() }}</div>
-              <div class="stat-desc">{{ lifetimeDhm }}</div>
+              <div class="stat-desc font-bold">{{ lifetimeDhm }}</div>
             </div>
           </div>
 
@@ -101,7 +101,20 @@
             <div class="stat">
               <div class="stat-title">Seconds</div>
               <div class="stat-value">{{ Math.round(lifetimeSeconds).toLocaleString() }}</div>
-              <div class="stat-desc">21% more than last month</div>
+              <div class="stat-desc font-bold">21% more than last month</div>
+            </div>
+          </div>
+
+          <div class="stats shadow">
+            <div class="stat">
+              <div class="stat-title">Battery Consumption By Day</div>
+              <div class="stat-value">{{
+                  batteryPercentageConsumptionByDay.toFixed(3)
+                }}%
+              </div>
+              <div class="stat-desc font-bold">{{
+                  (batteryPercentageConsumptionByDay * 30).toFixed(3)
+                }}% by Month</div>
             </div>
           </div>
         </div>
@@ -115,6 +128,10 @@ export default {
   name: "BatteryLifeEstimator",
 
   computed: {
+    batteryPercentageConsumptionByDay() {
+      return 100 / this.lifetimeSeconds * 86400;
+    },
+
     lifetimeSeconds() {
       let mAhWhenActive = this.activeAvgCurrentMa * (this.activeTimeMs / 3600000);
       let mAhWhenSleep = this.sleepAvgCurrentMa * (this.sleepTimeMs / 3600000);
@@ -146,7 +163,6 @@ export default {
 
   data() {
     return {
-
       batteryCapacityMAh: 2500,
       batterySelfDischargingPercentageYear: 0,
       activeAvgCurrentMa: 109.197271,

@@ -33,7 +33,7 @@
 
               <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 text-sm">
                 <div class="mr-2 rounded-md shadow-md p-3 text-center items-center bg-white">
-                  like <strong>{{ (mAhSelfDischargingByHour*60).toFixed(2) }}</strong> mA constantly
+                  like <strong>{{ (mAhSelfDischargingByHour).toFixed(3) }}</strong> mA constantly
                 </div>
               </div>
             </div>
@@ -271,7 +271,7 @@ export default {
 
   computed: {
     mAhSelfDischargingByHour() {
-      return this.batteryCapacityMAh * (this.batterySelfDischargingPercentageYear / 8760 / 100);
+      return this.batteryCapacityMAh * (this.batterySelfDischargingPercentageYear / 100) / 8760;
     },
 
     batteryPercentageConsumptionByDay() {
@@ -298,7 +298,7 @@ export default {
           + mAhOccasionallyActive * this.occasionallyActiveFrequency;
       }
 
-      let mAhSelfDischargingByCycle = this.mAhSelfDischargingByHour / cycleTimeInHours;
+      let mAhSelfDischargingByCycle = this.mAhSelfDischargingByHour * cycleTimeInHours;
       let mAhByCycle = mAhWhenActive + mAhWhenSleep + mAhSelfDischargingByCycle;
 
       let deviceCyclesBatteryCapacity = this.batteryCapacityMAh / mAhByCycle;

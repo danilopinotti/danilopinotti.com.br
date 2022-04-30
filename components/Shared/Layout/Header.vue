@@ -5,6 +5,7 @@
         <span class="m-0 md:ml-3 text-2xl">Danilo Pinotti</span>
       </NuxtLink>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center gap-4">
+        <NuxtLink class="hover:text-gray-900" to="/tools">Tools</NuxtLink>
         <a class="hover:text-gray-900" href="https://github.com/danilopinotti">Github</a>
         <a class="hover:text-gray-900" href="https://www.linkedin.com/in/danilopinotti/">Linkedin</a>
         <a class="hover:text-gray-900" href="https://twitter.com/danilopinotti">Twitter</a>

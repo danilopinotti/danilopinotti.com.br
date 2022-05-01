@@ -4,6 +4,7 @@
     <div>
       <Nuxt></Nuxt>
     </div>
+    <SharedLayoutFooter></SharedLayoutFooter>
   </div>
 </template>
 

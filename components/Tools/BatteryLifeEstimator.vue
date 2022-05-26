@@ -1,6 +1,6 @@
 <template>
   <div>
-    Calculate an estimate of the battery life time of a IoT devices.
+    Calculate an estimate of the battery life time of IoT devices.
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="mt-4">
@@ -320,6 +320,24 @@ export default {
       const mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes") : "";
       return dDisplay + hDisplay + mDisplay;
     },
+  },
+
+  head() {
+    return {
+      title: 'Danilo Pinotti - Battery Life Estimator',
+      meta: [
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: 'iot, esp32, battery life, battery life estimator, 18650, power consumption, optimization, low power',
+        },
+        {
+          hid: "description",
+          name: "description",
+          content: 'Calculate an estimate of the battery life time of IoT devices.'
+        }
+      ]
+    };
   },
 
   data() {

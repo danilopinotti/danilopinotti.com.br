@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar text-gray-600 body-font bg-base-200">
+  <header class="navbar text-gray-600 body-font bg-base-200 border-b">
     <div class="container mx-auto flex flex-wrap py-5 flex-col md:flex-row items-center">
       <NuxtLink class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 hove:underline" to="/">
         <span class="m-0 md:ml-3 text-3xl font-bold text-[#1E1E1E] tracking-wider">

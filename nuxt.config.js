@@ -15,7 +15,7 @@ export default {
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {name: 'robots', content: 'index, follow'},
       {name: 'author', content: 'Danilo Pinotti'},
-      {name: 'keywords', content: 'blog, danilopinotti, dev, desenvolvimento, programação, git, infra'},
+      {hid: 'keywords', name: 'keywords', content: 'blog, danilopinotti, dev, desenvolvimento, programação, git, infra'},
       {hid: 'description', name: 'description', content: ''},
       {name: 'format-detection', content: 'telephone=no'}
     ],

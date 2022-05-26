@@ -28,6 +28,18 @@ import GoBack from "@/components/Shared/Buttons/GoBack";
 
 export default {
   components: {GoBack, Author},
+  head() {
+    return {
+      title: 'Danilo Pinotti - ' + this.article.title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.article.description
+        }
+      ]
+    };
+  },
   async asyncData({$content, params}) {
     const article = await $content('articles', params.slug).fetch()
 

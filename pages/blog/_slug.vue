@@ -30,7 +30,7 @@ export default {
   components: {GoBack, Author},
   head() {
     return {
-      title: 'Danilo Pinotti - ' + this.article.title,
+      title: this.article.title,
       meta: [
         {
           hid: "description",

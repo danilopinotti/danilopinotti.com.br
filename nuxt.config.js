@@ -13,11 +13,39 @@ export default {
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Este é meu site sobre tecnologia, programação e outros assuntos. Sou desenvolvedor Web Fullstack Laravel/VueJs/TailwindCSS, desenvolvedor IoT e eterno estudante.'
+      },
+      {name: 'format-detection', content: 'telephone=no'},
       {name: 'robots', content: 'index, follow'},
       {name: 'author', content: 'Danilo Pinotti'},
-      {hid: 'keywords', name: 'keywords', content: 'blog, danilopinotti, dev, desenvolvimento, programação, git, infra'},
-      {hid: 'description', name: 'description', content: ''},
-      {name: 'format-detection', content: 'telephone=no'}
+      {name: 'type', content: 'website'},
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        content: 'blog, danilopinotti, dev, desenvolvimento, laravel, performance, git, infra, tailwindcss'
+      },
+
+      {hid: 'og:site_name', name: 'og:site_name', property: 'og:site_name', content: 'Danilo Pinotti'},
+      {hid: 'og:type', name: 'og:type', property: 'og:type', content: 'website'},
+      {hid: 'og:url', name: 'og:url', property: 'og:url', content: 'https://danilopinotti.com.br'},
+      {hid: 'og:title', name: 'og:title', property: 'og:title', content: 'Danilo Pinotti'},
+      {hid: 'og:updated_time', name: 'og:updated_time', property: 'og:updated_time', content: '1658357215'},
+      {
+        hid: 'og:description',
+        name: 'og:description',
+        property: 'og:description',
+        content: 'Este é meu site sobre tecnologia, programação e outros assuntos. Sou desenvolvedor Web Full-Stack Laravel/VueJs/TailwindCSS, desenvolvedor IoT e eterno estudante.'
+      },
+      {
+        hid: 'og:image',
+        name: 'og:image',
+        property: 'og:image',
+        itemprop: 'image',
+        content: '/android-chrome-512x512.png'
+      }
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},

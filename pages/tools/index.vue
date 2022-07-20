@@ -19,8 +19,10 @@
         <div class="card w-96 bg-base-100 shadow-xl">
           <div class="card-body">
             <h2 class="card-title">
-              Device Battery Life Estimator
-              <div class="badge badge-outline">IoT</div>
+              <NuxtLink to="/tools/device-battery-life-estimator">
+                Device Battery Life Estimator
+                <span class="badge badge-outline">IoT</span>
+              </NuxtLink>
             </h2>
             <p>Calculate an estimate of the battery life of IoT devices.</p>
             <div class="card-actions justify-end">

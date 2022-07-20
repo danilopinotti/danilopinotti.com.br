@@ -29,15 +29,25 @@ import GoBack from "@/components/Shared/Buttons/GoBack";
 export default {
   components: {GoBack, Author},
   head() {
+    let meta = [
+      {
+        hid: "description",
+        name: "description",
+        content: this.article.description
+      },
+    ];
+
+    if (this.article.keywords) {
+      meta.push({
+        hid: "keywords",
+        name: "keywords",
+        content: this.article.keywords
+      });
+    }
+
     return {
       title: this.article.title,
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: this.article.description
-        }
-      ]
+      meta: meta
     };
   },
   async asyncData({$content, params}) {

@@ -3,6 +3,7 @@ title: O Básico Sobre Expressões Regulares
 description: 'Expressão regular é uma forma de representar palavras, frases ou até parágrafos através de uma única notação. A aplicação de expressões regulares é praticamente infinita, basta encontrar os momentos certos para usá-las.'
 image: /images/articles/regex.jpeg
 publishedAt: 2017-02-06T21:00:00
+keywords: regex, expressões regulares, regex 101, aprendendo regex
 author:
   name: Danilo Pinotti
 ---

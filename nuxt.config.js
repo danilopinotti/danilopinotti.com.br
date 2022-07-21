@@ -25,7 +25,7 @@ export default {
       {
         hid: 'keywords',
         name: 'keywords',
-        content: 'blog, danilopinotti, dev, desenvolvimento, laravel, performance, git, infra, tailwindcss'
+        content: 'blog, danilopinotti, dev, web development, laravel, performance, git, aws, tailwindcss'
       },
 
       {hid: 'og:site_name', name: 'og:site_name', property: 'og:site_name', content: 'Danilo Pinotti'},

@@ -16,7 +16,7 @@
         <h1 class="text-2xl font-bold mb-4">
           Tools
         </h1>
-        <div class="card w-96 bg-base-100 shadow-md">
+        <div class="md:card w-full md:w-96 bg-base-100 md:shadow-md border-b md:border-b-0">
           <div class="card-body">
             <h2 class="card-title">
               <NuxtLink to="/tools/device-battery-life-estimator">

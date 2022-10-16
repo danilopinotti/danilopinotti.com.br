@@ -13,6 +13,9 @@
       <a class="link link-hover" href="https://github.com/danilopinotti/danilopinotti.com.br">
         Contribute with this site
       </a>
+      <NuxtLink to="/open-source-usages" class="link link-hover">
+        Open Source Usages
+      </NuxtLink>
     </div>
     <div>
       <span class="footer-title">Social</span>

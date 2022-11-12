@@ -1,5 +1,18 @@
 <template>
   <div class="container mx-auto px-4 py-8">
+    <div class="text-sm breadcrumbs">
+      <ul>
+        <li>
+          <NuxtLink to="/">Home</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/presentations">Presentations</NuxtLink>
+        </li>
+        <li>
+          {{ presentation.title }}
+        </li>
+      </ul>
+    </div>
     <div class="mt-0 md:mt-8">
       <div class="flex flex-wrap justify-center">
         <div class="px-4">
@@ -11,21 +24,26 @@
             <div>
               <h1 class="text-2xl font-medium text-gray-900 title-font">
                 {{ presentation.title }}
-                <a :href="presentation.link"
-                   title="Abrir link externo" target="_blank">
-                  <fa icon="arrow-up-right-from-square" class="ml-1"></fa>
-                </a>
               </h1>
               <p>
                 {{ presentation.description }}
               </p>
-              <p class="justify-self-end text-gray-500 my-4">
-                Data de publicação: {{ $formatDate(presentation.publishedAt) }}
-              </p>
+              <div class="mt-4 text-gray-600">
+                <a :href="presentation.link"
+                   class="hover:text-gray-900 hover:underline"
+                   title="Abrir link externo" target="_blank">
+                  <fa icon="arrow-up-right-from-square" class="mr-1"></fa>
+                  Abrir link externo
+                </a>
+                <p class="justify-self-end">
+                  <fa :icon="['far', 'calendar']" class="mr-1"></fa>
+                  Data de publicação: {{ $formatDate(presentation.publishedAt) }}
+                </p>
+              </div>
               <BlogAuthor :author="presentation.author" class="mt-4"/>
 
               <div class="w-full mx-auto">
-                <BlogPrevNext class="mt-8" :prev="prev" :next="next"/>
+                <BlogPrevNext route-name="presentations-slug" class="mt-8" :prev="prev" :next="next"/>
               </div>
             </div>
           </div>

@@ -25,7 +25,7 @@
               <h1 class="text-2xl font-medium text-gray-900 title-font">
                 {{ presentation.title }}
               </h1>
-              <p>
+              <p class="prose">
                 {{ presentation.description }}
               </p>
               <div class="mt-4 text-gray-600">

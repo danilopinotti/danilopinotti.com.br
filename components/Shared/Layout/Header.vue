@@ -11,12 +11,12 @@
 
       <div class="order-3 md:order-2 mt-2 md:mt-0 md:ml-6 py-3 md:p-0 flex gap-4 bg-white md:bg-transparent
       w-full md:w-auto text-center flex items-center justify-center border-b md:border-b-0">
-        <NuxtLink class="text-teal-600 hover:text-teal-800 font-semibold"
+        <NuxtLink class="text-teal-600 hover:text-teal-800"
                   to="/tools" title="Tools">
           <SharedIconsTools></SharedIconsTools>
           Tools
         </NuxtLink>
-        <NuxtLink class="text-teal-600 hover:text-teal-800 font-semibold"
+        <NuxtLink class="text-teal-600 hover:text-teal-800"
                   to="/presentations" title="Tools">
           <SharedIconsPresentation></SharedIconsPresentation>
           Presentations

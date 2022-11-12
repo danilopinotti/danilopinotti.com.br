@@ -15,7 +15,7 @@
       <div v-for="presentation in presentations" :key="presentation.slug"
            class="mockup-window border border-base-300">
         <span class="absolute float w-full top-4 text-center font-bold text-gray-600">
-          {{ presentation.title }}
+          {{ truncate(presentation.title) }}
         </span>
         <div class="flex flex-col justify-center px-4 border-t py-8 border-base-300">
 
@@ -23,7 +23,9 @@
             <span class="text-2xl font-bold text-gray-600 hover:text-blue-700 title-font">
               {{ presentation.title }}
             </span>
-            <div class="leading-relaxed">{{ presentation.description }}</div>
+            <div class="leading-relaxed">
+              {{ truncate(presentation.description, 100) }}
+            </div>
           </NuxtLink>
 
           <div class="mt-2 text-sm font-light">
@@ -37,6 +39,8 @@
 </template>
 
 <script>
+import {truncate} from 'lodash';
+
 export default {
   async asyncData({$content, params}) {
     const presentations = await $content('presentations')
@@ -46,6 +50,12 @@ export default {
 
     return {
       presentations
+    }
+  },
+
+  methods: {
+    truncate(text, length = 25) {
+      return truncate(text, {length})
     }
   }
 }

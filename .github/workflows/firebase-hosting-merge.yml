@@ -31,7 +31,7 @@ jobs:
         continue-on-error: true
         run: npm ci
 
-      - run: GOOGLE_ANALYTICS_ID=${{ secrets.GOOGLE_ANALYTICS_ID }} npm run generate
+      - run: NODE_OPTIONS=--openssl-legacy-provider GOOGLE_ANALYTICS_ID=${{ secrets.GOOGLE_ANALYTICS_ID }} npm run generate
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

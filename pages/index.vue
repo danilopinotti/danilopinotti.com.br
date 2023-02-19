@@ -1,13 +1,13 @@
 <template>
   <section class="text-gray-600 body-font overflow-hidden">
-    <div class="container px-5 pt-10 pb-12 mx-auto">
+    <div class="container px-8 md:px-32 pt-10 pb-12 mx-auto">
       <div class="-my-8 divide-y-2 divide-gray-100">
         <div v-for="article of articles" :key="article.slug"
              class="py-8 flex flex-wrap md:flex-nowrap flex-col md:flex-row">
           <div
             class="w-full md:w-32 md:mb-0 mb-6 flex-shrink-0 flex flex-col justify-center items-center order-2 md:order-1">
             <span class="mt-1 text-gray-600 text-sm font-bold">
-              {{ $formatDate(article.publishedAt) }}
+              Published at: {{ $formatDate(article.publishedAt) }}
             </span>
           </div>
           <div class="md:flex-grow flex items-center order-2" :class="{'w-full md:w-2/3': !!article.image}">

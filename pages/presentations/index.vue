@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto px-4 py-8">
+  <div class="container px-5 pt-1 pb-12 mx-auto">
     <div class="text-sm breadcrumbs">
       <ul>
         <li>
@@ -10,7 +10,9 @@
         </li>
       </ul>
     </div>
-
+    <h1 class="text-2xl font-bold mb-4">
+      Presentations
+    </h1>
     <div class="mt-0 md:mt-8 grid grid-cols-1 md:grid-cols-3 gap-3">
       <div v-for="presentation in presentations" :key="presentation.slug"
            class="mockup-window border border-base-300">

@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto px-4 py-8">
+  <div class="container px-5 pt-1 pb-12 mx-auto">
     <div class="text-sm breadcrumbs">
       <ul>
         <li>

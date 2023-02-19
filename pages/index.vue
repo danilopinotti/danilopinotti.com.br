@@ -3,16 +3,26 @@
     <div class="container px-6 md:px-28 py-6 mx-auto">
       <div class="flex flex-wrap gap-2">
         <div class="p-6 flex flex-col items-start rounded-lg" v-for="article of articles" :key="article.slug">
-          <div class="flex gap-2">
+          <div class="flex gap-2 mx-auto md:mx-0 mb-4 md:mb-2">
             <SharedTag v-for="tag in article.tags?.split(',') || []" :tag="tag" :key="tag"></SharedTag>
           </div>
-          <NuxtLink :to="{ name: 'blog-slug', params: { slug: article.slug } }"
-                    class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4">
-            {{ article.title }}
-          </NuxtLink>
-          <p class="leading-relaxed mb-4">
-            {{ article.description }}
-          </p>
+          <div class="flex flex-col md:flex-row">
+            <div class="w-full order-2 md:order-1 mb-3"
+              :class="{'md:w-2/3': article.image}">
+              <NuxtLink :to="{ name: 'blog-slug', params: { slug: article.slug } }"
+                        class="sm:text-3xl text-2xl title-font font-medium text-gray-900 my-4">
+                {{ article.title }}
+              </NuxtLink>
+              <p class="leading-relaxed mb-4">
+                {{ article.description }}
+              </p>
+            </div>
+            <div class="w-full md:w-1/3 flex justify-center md:justify-end p-0 order-1 md:order-2" v-if="article.image">
+              <NuxtLink :to="{ name: 'blog-slug', params: { slug: article.slug } }">
+                <img :src="article.image" class="h-auto md:h-32 w-full md:w-auto mb-4 md:mb-0" :alt="article.title">
+              </NuxtLink>
+            </div>
+          </div>
           <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
             <NuxtLink
               :to="{ name: 'blog-slug', params: { slug: article.slug } }"

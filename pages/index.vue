@@ -2,7 +2,7 @@
   <section class="text-gray-600 body-font overflow-hidden antialiased">
     <div class="container px-6 md:px-28 py-6 mx-auto">
       <div class="flex flex-wrap gap-2">
-        <div class="p-6 flex flex-col items-start rounded-lg" v-for="article of articles" :key="article.slug">
+        <div class="px-6 flex flex-col items-start border-b py-6" v-for="article of articles" :key="article.slug">
           <div class="flex gap-2 mx-auto md:mx-0 mb-4 md:mb-2">
             <SharedTag v-for="tag in article.tags?.split(',') || []" :tag="tag" :key="tag"></SharedTag>
           </div>
@@ -23,7 +23,7 @@
               </NuxtLink>
             </div>
           </div>
-          <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
+          <div class="flex items-center flex-wrap border-gray-100 mt-auto w-full">
             <NuxtLink
               :to="{ name: 'blog-slug', params: { slug: article.slug } }"
               class="text-indigo-500 inline-flex items-center">
@@ -39,7 +39,6 @@
               Published at: {{ $formatDate(article.publishedAt) }}
             </span>
           </div>
-          <BlogAuthor :author="article.author" class=""/>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@
           <span class="justify-self-end text-gray-500 text-sm">
             Data de publicação: {{ $formatDate(article.publishedAt) }}
           </span>
+          <br>
           <BlogAuthor :author="article.author" />
         </article>
       </div>

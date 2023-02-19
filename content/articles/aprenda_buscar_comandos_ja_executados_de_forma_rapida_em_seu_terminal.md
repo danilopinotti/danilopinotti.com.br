@@ -4,6 +4,7 @@ description: 'É comum, para usuários que preferem utilizar o terminal para agi
 publishedAt: 2018-03-30T21:00:00
 image: /images/articles/terminal-search.png
 keywords: linux, bash, zsh, tips, dicas
+tags: linux, terminal
 author:
   name: Danilo Pinotti
 ---

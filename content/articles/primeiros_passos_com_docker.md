@@ -4,6 +4,7 @@ description: 'O principal objetivo desta postagem não é aprofundar no funciona
 image: /images/articles/docker-logo.png
 keywords: tecnologias, docker, docker 101, docker-compose, linux
 publishedAt: 2017-01-07T21:00:00
+tags: docker
 author:
   name: Danilo Pinotti
 ---

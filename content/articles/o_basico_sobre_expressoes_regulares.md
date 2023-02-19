@@ -4,6 +4,7 @@ description: 'Expressão regular é uma forma de representar palavras, frases ou
 image: /images/articles/regex.jpeg
 publishedAt: 2017-02-06T21:00:00
 keywords: regex, expressões regulares, regex 101, aprendendo regex
+tags: regex, expressões regulares
 author:
   name: Danilo Pinotti
 ---

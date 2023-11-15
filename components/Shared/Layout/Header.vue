@@ -12,27 +12,38 @@
 
       <div class="order-3 md:order-2 mt-2 md:mt-0 md:ml-6 py-3 md:p-0 flex gap-1 bg-white md:bg-transparent
       w-full md:w-auto text-center flex items-center justify-center border-b md:border-b-0">
-        <NuxtLink class="text-sky-600 hover:text-sky-800 hover:bg-gray-200 rounded-lg p-2 font-semibold flex items-center gap-1"
-                  to="/presentations" title="Tools">
+        <NuxtLink
+          class="text-sky-600 hover:text-sky-800 hover:bg-gray-200 rounded-lg p-2 font-semibold flex items-center gap-1"
+          to="/presentations" title="Tools">
           <SharedIconsPresentation class="w-5 h-5"></SharedIconsPresentation>
           Presentations
         </NuxtLink>
         <div class="dropdown dropdown-end text-md">
           <div tabindex="0"
-                 class="text-sky-600 hover:text-sky-800 hover:bg-gray-200 rounded-lg p-2 cursor-pointer font-semibold flex items-center gap-1">
+               class="text-sky-600 hover:text-sky-800 hover:bg-gray-200 rounded-lg p-2 cursor-pointer font-semibold flex items-center gap-1">
             <SharedIconsTools class="w-5 h-5"></SharedIconsTools>
             Tools
             <fa :icon="['fas', 'chevron-down']" class="text-sm text-gray-400"></fa>
           </div>
-          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box mt-4">
-            <li>
-              <NuxtLink class="flex flex-col w-64 text-left"
+          <ul class="dropdown-content menu text-left p-2 shadow bg-base-100 rounded-box mt-4 z-10">
+            <li class="text-left">
+              <NuxtLink class="flex flex-col w-64"
                         to="/tools/device-battery-life-estimator">
                 <p class="font-bold">
-                  <fa icon="battery-full" class="text-green-600"></fa>
-                  Device Battery Life Estimator
+                  <fa icon="battery-full" class="text-green-600 mr-1"></fa>
+                  Battery Life Estimator
                 </p>
                 <p>Calculate an estimate of the battery life of IoT devices.</p>
+              </NuxtLink>
+            </li>
+            <li class="text-left">
+              <NuxtLink class="flex flex-col w-64"
+                        to="/tools/base64">
+                <p class="font-bold text-left">
+                  <fa icon="code" class="text-black mr-1"></fa>
+                  Base64 Encoder/Decoder
+                </p>
+                <p>Simply Encode and Decode Base64 strings</p>
               </NuxtLink>
             </li>
           </ul>

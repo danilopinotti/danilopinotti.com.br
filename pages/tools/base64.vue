@@ -7,22 +7,22 @@
             <NuxtLink to="/">Home</NuxtLink>
           </li>
           <li>Tools</li>
-          <li>Device Battery Life Estimator</li>
+          <li>Base64 Encoder/Decoder</li>
         </ul>
       </div>
 
       <h1 class="text-2xl font-bold mb-4">
-        Device Battery Life Estimator
+        Base64 Encoder/Decoder
       </h1>
 
-      <ToolsBatteryLifeEstimator/>
+      <ToolsBase64EncoderDecoder/>
     </div>
   </section>
 </template>
 
 <script>
 export default {
-  name: "device-battery-life-estimator"
+  name: "base64"
 }
 </script>
 

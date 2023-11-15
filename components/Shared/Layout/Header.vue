@@ -35,6 +35,16 @@
                 <p>Calculate an estimate of the battery life of IoT devices.</p>
               </NuxtLink>
             </li>
+            <li>
+              <NuxtLink class="flex flex-col w-64 text-left"
+                        to="/tools/base64">
+                <p class="font-bold">
+                  <fa icon="code" class="text-black"></fa>
+                  Base64 Encoder/Decoder
+                </p>
+                <p>Simply Encode and Decode Base64 strings</p>
+              </NuxtLink>
+            </li>
           </ul>
         </div>
       </div>

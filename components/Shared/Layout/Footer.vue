@@ -5,6 +5,8 @@
 
       <NuxtLink to="/tools/device-battery-life-estimator" class="link link-hover">Device Battery Life Estimator
       </NuxtLink>
+      <NuxtLink to="/tools/base64" class="link link-hover">Base64 Encoder/Decoder
+      </NuxtLink>
     </div>
     <div>
       <span class="footer-title">About</span>

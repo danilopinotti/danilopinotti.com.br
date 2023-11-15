@@ -94,6 +94,7 @@ export default {
     decode(base64string) {
       try {
         this.textInput = atob(base64string);
+        this.inputPlaceholder = 'Input Data';
       } catch (e) {
         this.textInput = '';
         this.inputPlaceholder = 'Invalid Base64 string';

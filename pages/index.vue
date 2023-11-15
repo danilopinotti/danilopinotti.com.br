@@ -10,7 +10,7 @@
             <div class="w-full order-2 md:order-1 mb-3"
               :class="{'md:w-2/3': article.image}">
               <NuxtLink :to="{ name: 'blog-slug', params: { slug: article.slug } }"
-                        class="sm:text-3xl text-2xl title-font font-medium text-gray-900 my-4">
+                        class="sm:text-3xl text-2xl title-font font-medium text-gray-800 hover:text-blue-800 my-4">
                 {{ article.title }}
               </NuxtLink>
               <p class="leading-relaxed mb-4">

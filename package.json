@@ -20,7 +20,7 @@
     "@nuxtjs/robots": "^2.5.0",
     "@nuxtjs/sitemap": "^2.4.0",
     "core-js": "^3.26.0",
-    "daisyui": "^1.25.4",
+    "daisyui": "^4.0.0",
     "lodash": "^4.17.21",
     "nuxt": "^2.15.8",
     "vue": "^2.7.14",

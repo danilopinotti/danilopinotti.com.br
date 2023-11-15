@@ -6,9 +6,7 @@
           <li>
             <NuxtLink to="/">Home</NuxtLink>
           </li>
-          <li>
-            <NuxtLink to="/tools">Tools</NuxtLink>
-          </li>
+          <li>Tools</li>
           <li>Device Battery Life Estimator</li>
         </ul>
       </div>

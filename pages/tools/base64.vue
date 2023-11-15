@@ -6,9 +6,7 @@
           <li>
             <NuxtLink to="/">Home</NuxtLink>
           </li>
-          <li>
-            <NuxtLink to="/tools">Tools</NuxtLink>
-          </li>
+          <li>Tools</li>
           <li>Base64 Encoder/Decoder</li>
         </ul>
       </div>

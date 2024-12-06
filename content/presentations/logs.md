@@ -1,5 +1,5 @@
 ---
-title: "Logs: A Chave para um Diagnóstico Eficiente e Boas Práticas de Monitoramento"
+title: "Logs: A Chave para um Diagnóstico Eficiente"
 description:
   Nesta apresentação, exploraremos como os logs desempenham um papel crucial em ambientes de produção, oferecendo insights valiosos para diagnóstico e resolução de problemas.
 link: https://www.slideshare.net/slideshow/logs-a-chave-para-um-diagnostico-eficiente-e-boas-praticas-de-monitoramento/273883370

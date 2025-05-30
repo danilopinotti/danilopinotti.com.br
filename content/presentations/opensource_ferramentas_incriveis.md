@@ -1,5 +1,5 @@
 ---
-title: Open Source: Ferramentas Gratuitas Incríveis
+title: "Open Source: Ferramentas Gratuitas Incríveis"
 description:
   Um pouco sobre Open Source e algumas ferramentas gratuítas incríveis.
 link: https://www.slideshare.net/slideshow/open-source-ferramentas-gratuitas-incriveis/279928031

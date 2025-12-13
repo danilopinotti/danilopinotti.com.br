@@ -7,6 +7,8 @@
       </NuxtLink>
       <NuxtLink to="/tools/base64" class="link link-hover">Base64 Encoder/Decoder
       </NuxtLink>
+      <NuxtLink to="/tools/document-generator" class="link link-hover">Document Generator (CPF and CNPJ)
+      </NuxtLink>
     </div>
     <div>
       <span class="footer-title">About</span>

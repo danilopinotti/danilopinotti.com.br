@@ -29,21 +29,31 @@
             <li class="text-left">
               <NuxtLink class="flex flex-col w-64"
                         to="/tools/device-battery-life-estimator">
-                <p class="font-bold">
+                <div class="w-full flex justify-between">
+                  <h2 class="font-bold text-left">Battery Life Estimator</h2>
                   <fa icon="battery-full" class="text-green-600 mr-1"></fa>
-                  Battery Life Estimator
-                </p>
+                </div>
                 <p>Calculate an estimate of the battery life of IoT devices.</p>
               </NuxtLink>
             </li>
             <li class="text-left">
               <NuxtLink class="flex flex-col w-64"
                         to="/tools/base64">
-                <p class="font-bold text-left">
-                  <fa icon="code" class="text-black mr-1"></fa>
-                  Base64 Encoder/Decoder
-                </p>
+                <div class="w-full flex justify-between">
+                  <h2 class="font-bold text-left">Base64 Encoder/Decoder</h2>
+                  <fa icon="code" class="text-black mr-1 text-right"></fa>
+                </div>
                 <p>Simply Encode and Decode Base64 strings</p>
+              </NuxtLink>
+            </li>
+            <li class="text-left">
+              <NuxtLink class="flex flex-col w-64"
+                        to="/tools/document-generator">
+                <div class="w-full flex justify-between">
+                  <h2 class="font-bold text-left">Document Generator (CPF and CNPJ)</h2>
+                  <fa :icon="['far', 'address-card']" class="text-blue-600 mr-1"></fa>
+                </div>
+                <p>Generate valid CPF and CNPJ for testing purposes</p>
               </NuxtLink>
             </li>
           </ul>

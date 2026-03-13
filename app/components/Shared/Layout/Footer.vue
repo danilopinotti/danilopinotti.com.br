@@ -2,11 +2,13 @@
   <footer class="footer bg-base-200 text-base-content p-10 md:grid-flow-col md:justify-between md:px-24 lg:px-48">
     <nav>
       <h6 class="footer-title">Tools</h6>
-      <NuxtLink to="/tools/device-battery-life-estimator" class="link link-hover">Device Battery Life Estimator
-      </NuxtLink>
-      <NuxtLink to="/tools/base64" class="link link-hover">Base64 Encoder/Decoder
-      </NuxtLink>
-      <NuxtLink to="/tools/document-generator" class="link link-hover">Document Generator (CPF and CNPJ)
+      <NuxtLink
+        v-for="tool in tools"
+        :key="tool.to"
+        :to="tool.to"
+        class="link link-hover"
+      >
+        {{ tool.label }}
       </NuxtLink>
     </nav>
     <nav>
@@ -41,6 +43,7 @@
 </template>
 
 <script setup>
+const tools = useTools()
 </script>
 
 <style scoped>

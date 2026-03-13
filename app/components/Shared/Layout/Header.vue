@@ -29,36 +29,20 @@
         <!-- Tools dropdown -->
         <div class="dropdown dropdown-end">
           <div tabindex="0" class="nav-link cursor-pointer select-none">
-            <Icon name="heroicons:wrench-screwdriver" class="w-5 h-5" />
-            Tools
+            <NuxtLink to="/tools" class="flex items-center gap-1.5" @click.stop>
+              <Icon name="heroicons:wrench-screwdriver" class="w-5 h-5" />
+              Tools
+            </NuxtLink>
             <Icon name="fa6-solid:chevron-down" class="w-3.5 h-3.5 text-gray-400" />
           </div>
           <ul class="dropdown-content menu p-2 mt-2 shadow-lg bg-white border border-gray-100 rounded-xl w-72 z-50">
-            <li>
-              <NuxtLink class="tool-link" to="/tools/device-battery-life-estimator" @click="closeDropdown">
+            <li v-for="tool in tools" :key="tool.to">
+              <NuxtLink class="tool-link" :to="tool.to" @click="closeDropdown">
                 <div>
-                  <p class="font-semibold text-gray-800">Battery Life Estimator</p>
-                  <p class="text-xs text-gray-500 mt-0.5">Estimate battery life of IoT devices</p>
+                  <p class="font-semibold text-gray-800">{{ tool.label }}</p>
+                  <p class="text-xs text-gray-500 mt-0.5">{{ tool.description }}</p>
                 </div>
-                <Icon name="fa6-solid:battery-full" class="text-green-500 shrink-0" />
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink class="tool-link" to="/tools/base64" @click="closeDropdown">
-                <div>
-                  <p class="font-semibold text-gray-800">Base64 Encoder/Decoder</p>
-                  <p class="text-xs text-gray-500 mt-0.5">Encode and decode Base64 strings</p>
-                </div>
-                <Icon name="fa6-solid:code" class="text-gray-700 shrink-0" />
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink class="tool-link" to="/tools/document-generator" @click="closeDropdown">
-                <div>
-                  <p class="font-semibold text-gray-800">Document Generator</p>
-                  <p class="text-xs text-gray-500 mt-0.5">Generate valid CPF and CNPJ for testing</p>
-                </div>
-                <Icon name="fa6-regular:address-card" class="text-blue-500 shrink-0" />
+                <Icon :name="tool.icon" :class="tool.iconClass + ' shrink-0'" />
               </NuxtLink>
             </li>
           </ul>
@@ -99,17 +83,15 @@
           Presentations
         </NuxtLink>
         <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2 mt-2 mb-1">Tools</div>
-        <NuxtLink class="mobile-link" to="/tools/device-battery-life-estimator" @click="menuOpen = false">
-          <Icon name="fa6-solid:battery-full" class="w-4 h-4 text-green-500" />
-          Battery Life Estimator
-        </NuxtLink>
-        <NuxtLink class="mobile-link" to="/tools/base64" @click="menuOpen = false">
-          <Icon name="fa6-solid:code" class="w-4 h-4 text-gray-700" />
-          Base64 Encoder/Decoder
-        </NuxtLink>
-        <NuxtLink class="mobile-link" to="/tools/document-generator" @click="menuOpen = false">
-          <Icon name="fa6-regular:address-card" class="w-4 h-4 text-blue-500" />
-          Document Generator
+        <NuxtLink
+          v-for="tool in tools"
+          :key="tool.to"
+          class="mobile-link"
+          :to="tool.to"
+          @click="menuOpen = false"
+        >
+          <Icon :name="tool.icon" class="w-4 h-4" :class="tool.iconClass" />
+          {{ tool.label }}
         </NuxtLink>
 
         <!-- Social icons (mobile) -->
@@ -130,6 +112,7 @@
 </template>
 
 <script setup>
+const tools = useTools()
 const menuOpen = ref(false)
 const scrolled = ref(false)
 

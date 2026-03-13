@@ -14,6 +14,29 @@
   background-image: url('/icons/link.svg');
 }
 
-h2:hover .icon.icon-link, h3:hover .icon.icon-link, h4:hover .icon.icon-link, h5:hover .icon.icon-link {
+h1:hover .icon.icon-link, h2:hover .icon.icon-link, h3:hover .icon.icon-link, h4:hover .icon.icon-link, h5:hover .icon.icon-link {
   opacity: 1;
 }
+
+.prose h1 a,
+.prose h2 a,
+.prose h3 a,
+.prose h4 a,
+.prose h5 a,
+.prose h6 a {
+  color: #374151;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.prose h1 a:hover,
+.prose h2 a:hover,
+.prose h3 a:hover,
+.prose h4 a:hover,
+.prose h5 a:hover,
+.prose h6 a:hover {
+  color: #1e40af;
+}
+

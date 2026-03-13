@@ -28,5 +28,12 @@ export const useTools = (): Tool[] => [
     icon: 'fa6-regular:address-card',
     iconClass: 'text-blue-500',
   },
+  {
+    label: 'UUID Generator',
+    description: 'Generate UUIDs in versions 4, 5 and 7',
+    to: '/tools/uuid-generator',
+    icon: 'heroicons:finger-print',
+    iconClass: 'text-purple-500',
+  },
 ]
 

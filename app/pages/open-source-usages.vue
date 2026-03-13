@@ -39,6 +39,7 @@ const technologies = [
   { name: 'Iconify (via @nuxt/icon)', link: 'https://github.com/iconify/iconify' },
   { name: 'DaisyUI', link: 'https://github.com/saadeghi/daisyui' },
   { name: 'date-fns', link: 'https://github.com/date-fns/date-fns' },
+  { name: 'uuid', link: 'https://github.com/uuidjs/uuid' },
   { name: 'Hero Icons', link: 'https://heroicons.com' },
   { name: 'Nuxt Sitemap', link: 'https://github.com/nuxt-modules/sitemap' },
   { name: 'better-sqlite3', link: 'https://github.com/WiseLibs/better-sqlite3' },

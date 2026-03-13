@@ -1,12 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
 
 .icon.icon-link {
-  @apply absolute  opacity-0 h-4 -ml-6 w-10 bg-no-repeat my-2;
+  position: absolute;
+  opacity: 0;
+  height: 1rem;
+  margin-left: -1.5rem;
+  width: 2.5rem;
+  background-repeat: no-repeat;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   background-image: url('/icons/link.svg');
 }
 
 h2:hover .icon.icon-link, h3:hover .icon.icon-link, h4:hover .icon.icon-link, h5:hover .icon.icon-link {
-  @apply opacity-100;
+  opacity: 1;
 }

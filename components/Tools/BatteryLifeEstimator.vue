@@ -6,7 +6,7 @@
       <div class="mt-4">
         <div>
           <h2 class="text-lg font-bold">
-            <fa icon="battery-full" class="mr-1 text-green-600"></fa>
+            <Icon name="fa6-solid:battery-full" class="mr-1 text-green-600" />
             Battery
           </h2>
           <hr>
@@ -14,22 +14,22 @@
             <label class="label">
               <span class="label-text">Battery Capacity (mAh)</span>
             </label>
-            <label class="input-group">
-              <input type="number" step="100" min="0" class="input input-bordered text-right"
+            <div class="join">
+              <input type="number" step="100" min="0" class="input input-bordered join-item text-right"
                      v-model.number="batteryCapacityMAh">
-              <span>mAh</span>
-            </label>
+              <span class="btn btn-disabled join-item">mAh</span>
+            </div>
           </div>
           <div class="form-group mt-4">
             <label class="label">
               <span class="label-text">Battery Self-Discharging Rate (% per year)</span>
             </label>
             <div class="flex items-left md:items-center flex-col md:flex-row">
-              <label class="input-group w-min">
-                <input type="number" step="1" min="0" max="100" class="input input-bordered text-right"
+              <div class="join w-min">
+                <input type="number" step="1" min="0" max="100" class="input input-bordered join-item text-right"
                        v-model.number="batterySelfDischargingPercentageYear">
-                <span class="whitespace-nowrap">% per year</span>
-              </label>
+                <span class="btn btn-disabled join-item whitespace-nowrap">% per year</span>
+              </div>
 
               <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 text-sm">
                 <div class="mr-2 rounded-md shadow-md p-3 text-center items-center bg-white">
@@ -42,7 +42,7 @@
 
         <div class="mt-4">
           <h2 class="text-lg font-bold">
-            <fa icon="lightbulb" class="mr-1 text-yellow-500"></fa>
+            <Icon name="fa6-solid:lightbulb" class="mr-1 text-yellow-500" />
             Consumption in Active Mode
           </h2>
           <hr>
@@ -51,11 +51,11 @@
               <span class="label-text">Average Current (mA)</span>
             </label>
             <div class="flex items-left md:items-center flex-col md:flex-row">
-              <label class="input-group w-min">
-                <input type="number" step="0.01" min="0" class="input input-bordered text-right"
+              <div class="join w-min">
+                <input type="number" step="0.01" min="0" class="input input-bordered join-item text-right"
                        v-model.number="activeAvgCurrentMa">
-                <span>mA</span>
-              </label>
+                <span class="btn btn-disabled join-item">mA</span>
+              </div>
               <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 text-sm">
                 <div class="mr-2 rounded-md shadow-md p-3 text-center items-center">
                   <strong>{{ (activeAvgCurrentMa * 1000).toFixed(2) }}</strong> µA
@@ -71,11 +71,11 @@
               <span class="label-text">Active Time (ms)</span>
             </label>
             <div class="flex items-left md:items-center flex-col md:flex-row">
-              <label class="input-group w-min">
-                <input type="number" step="1" min="0" class="input input-bordered text-right"
+              <div class="join w-min">
+                <input type="number" step="1" min="0" class="input input-bordered join-item text-right"
                        v-model.number="activeTimeMs">
-                <span>ms</span>
-              </label>
+                <span class="btn btn-disabled join-item">ms</span>
+              </div>
               <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 md:grid-cols-3 text-sm">
                 <div class="mr-2 rounded-md shadow-md p-3 text-center">
                   <strong>{{ (activeTimeMs / 1000).toFixed(2) }}</strong> Seconds
@@ -103,12 +103,12 @@
                 <label class="label">
                   <span class="label-text">Frequency</span>
                 </label>
-                <label class="input-group">
-                  <span>1 time each</span>
-                  <input type="number" step="1" min="0" class="input input-bordered text-right"
+                <div class="join">
+                  <span class="btn btn-disabled join-item">1 time each</span>
+                  <input type="number" step="1" min="0" class="input input-bordered join-item text-right"
                          v-model.number="occasionallyActiveEach">
-                  <span>activations</span>
-                </label>
+                  <span class="btn btn-disabled join-item">activations</span>
+                </div>
               </div>
 
               <div class="form-group mt-4">
@@ -116,11 +116,11 @@
                   <span class="label-text">Average Current (mA)</span>
                 </label>
                 <div class="flex items-left md:items-center flex-col md:flex-row">
-                  <label class="input-group w-min">
-                    <input type="number" step="0.01" min="0" class="input input-bordered text-right"
+                  <div class="join w-min">
+                    <input type="number" step="0.01" min="0" class="input input-bordered join-item text-right"
                            v-model.number="occasionallyActiveAvgCurrentMa">
-                    <span>mA</span>
-                  </label>
+                    <span class="btn btn-disabled join-item">mA</span>
+                  </div>
                   <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 text-sm">
                     <div class="mr-2 rounded-md shadow-md p-3 text-center items-center bg-white">
                       <strong>{{ (occasionallyActiveAvgCurrentMa * 1000).toFixed(2) }}</strong> µA
@@ -132,16 +132,15 @@
                 </div>
               </div>
               <div class="form-group mt-4">
-
                 <label class="label">
                   <span class="label-text">Active Time (ms)</span>
                 </label>
                 <div class="flex items-left md:items-center flex-col md:flex-row">
-                  <label class="input-group w-min">
-                    <input type="number" step="1" min="0" class="input input-bordered text-right"
+                  <div class="join w-min">
+                    <input type="number" step="1" min="0" class="input input-bordered join-item text-right"
                            v-model.number="occasionallyActiveTimeMs">
-                    <span>ms</span>
-                  </label>
+                    <span class="btn btn-disabled join-item">ms</span>
+                  </div>
                   <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 md:grid-cols-3 text-sm">
                     <div class="mr-2 rounded-md shadow-md p-3 text-center bg-white">
                       <strong>{{ (occasionallyActiveTimeMs / 1000).toFixed(2) }}</strong> Seconds
@@ -161,7 +160,7 @@
 
         <div class="mt-4">
           <h2 class="text-lg font-bold">
-            <fa icon="bed" class="mr-1 text-blue-800"></fa>
+            <Icon name="fa6-solid:bed" class="mr-1 text-blue-800" />
             Consumption in Sleep Mode
           </h2>
           <hr>
@@ -170,11 +169,11 @@
               <span class="label-text">Average Current (mA)</span>
             </label>
             <div class="flex items-left md:items-center flex-col md:flex-row">
-              <label class="input-group w-min">
-                <input type="number" step="0.01" min="0" class="input input-bordered text-right"
+              <div class="join w-min">
+                <input type="number" step="0.01" min="0" class="input input-bordered join-item text-right"
                        v-model.number="sleepAvgCurrentMa">
-                <span>mA</span>
-              </label>
+                <span class="btn btn-disabled join-item">mA</span>
+              </div>
               <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 md:grid-cols-3 text-sm">
                 <div class="mr-2 rounded-md shadow-md p-3 text-center">
                   <strong>{{ (sleepAvgCurrentMa * 1000).toFixed(2) }}</strong> µA
@@ -190,11 +189,11 @@
               <span class="label-text">Sleep Time (ms)</span>
             </label>
             <div class="flex items-left md:items-center flex-col md:flex-row">
-              <label class="input-group w-min">
-                <input type="number" step="1" min="0" class="input input-bordered text-right"
+              <div class="join w-min">
+                <input type="number" step="1" min="0" class="input input-bordered join-item text-right"
                        v-model.number="sleepTimeMs">
-                <span>ms</span>
-              </label>
+                <span class="btn btn-disabled join-item">ms</span>
+              </div>
               <div class="ml-0 mt-2 md:mt-0 md:ml-4 grid grid-cols-2 md:grid-cols-3 text-sm">
                 <div class="mr-2 rounded-md shadow-md p-3 text-center">
                   <strong>{{ (sleepTimeMs / 1000).toFixed(2) }}</strong> Seconds
@@ -213,7 +212,7 @@
 
       <div class="mt-4">
         <h2 class="text-lg font-bold">
-          <fa icon="hourglass" class="mr-1 text-purple-700"></fa>
+          <Icon name="fa6-solid:hourglass" class="mr-1 text-purple-700" />
           Estimations
         </h2>
 
@@ -256,7 +255,7 @@
                target="_blank"
                href="https://github.com/danilopinotti/danilopinotti.com.br/blob/master/components/Tools/BatteryLifeEstimator.vue">
               this project on GitHub
-              <fa :icon="['fab', 'github']"></fa>
+              <Icon name="fa6-brands:github" />
             </a>
           </p>
         </div>
@@ -265,99 +264,82 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "BatteryLifeEstimator",
-
-  computed: {
-    mAhSelfDischargingByHour() {
-      return this.batteryCapacityMAh * (this.batterySelfDischargingPercentageYear / 100) / 8760;
+<script setup>
+useHead({
+  title: 'Danilo Pinotti - Battery Life Estimator',
+  meta: [
+    {
+      name: 'keywords',
+      content: 'iot, esp32, battery life, battery life estimator, 18650, power consumption, optimization, low power',
     },
-
-    batteryPercentageConsumptionByDay() {
-      return 100 / this.lifetimeSeconds * 86400;
+    {
+      name: 'description',
+      content: 'Calculate an estimate of the battery life time of IoT devices.',
     },
+  ],
+})
 
-    occasionallyActiveFrequency() {
-      return 1 / this.occasionallyActiveEach;
-    },
+const batteryCapacityMAh = ref(2500)
+const batterySelfDischargingPercentageYear = ref(0)
+const activeAvgCurrentMa = ref(100)
+const activeTimeMs = ref(400)
 
-    lifetimeSeconds() {
-      let mAhWhenActive = this.activeAvgCurrentMa * (this.activeTimeMs / 3600000);
-      let mAhWhenSleep = this.sleepAvgCurrentMa * (this.sleepTimeMs / 3600000);
+const occasionallyActiveEach = ref(0)
+const occasionallyActiveAvgCurrentMa = ref(200)
+const occasionallyActiveTimeMs = ref(11000)
 
-      let cycleTimeInHours = (this.activeTimeMs + this.sleepTimeMs) / 3600000;
+const sleepAvgCurrentMa = ref(0.050)
+const sleepTimeMs = ref(150000)
 
-      if (this.occasionallyActiveEach !== 0) {
-        let mAhOccasionallyActive = this.occasionallyActiveAvgCurrentMa * (this.occasionallyActiveTimeMs / 3600000);
-        let activeTimeMedian = this.activeTimeMs * (1 - this.occasionallyActiveFrequency)
-          + this.occasionallyActiveTimeMs * this.occasionallyActiveFrequency;
+const mAhSelfDischargingByHour = computed(() => {
+  return batteryCapacityMAh.value * (batterySelfDischargingPercentageYear.value / 100) / 8760
+})
 
-        cycleTimeInHours = (activeTimeMedian + this.sleepTimeMs) / 3600000;
-        mAhWhenActive = mAhWhenActive * (1 - this.occasionallyActiveFrequency)
-          + mAhOccasionallyActive * this.occasionallyActiveFrequency;
-      }
+const occasionallyActiveFrequency = computed(() => {
+  return 1 / occasionallyActiveEach.value
+})
 
-      let mAhSelfDischargingByCycle = this.mAhSelfDischargingByHour * cycleTimeInHours;
-      let mAhByCycle = mAhWhenActive + mAhWhenSleep + mAhSelfDischargingByCycle;
+const lifetimeSeconds = computed(() => {
+  let mAhWhenActive = activeAvgCurrentMa.value * (activeTimeMs.value / 3600000)
+  let mAhWhenSleep = sleepAvgCurrentMa.value * (sleepTimeMs.value / 3600000)
 
-      let deviceCyclesBatteryCapacity = this.batteryCapacityMAh / mAhByCycle;
-      return deviceCyclesBatteryCapacity * cycleTimeInHours * 3600;
-    },
+  let cycleTimeInHours = (activeTimeMs.value + sleepTimeMs.value) / 3600000
 
-    lifetimeMonths() {
-      return this.lifetimeSeconds / 2629746;
-    },
+  if (occasionallyActiveEach.value !== 0) {
+    let mAhOccasionallyActive = occasionallyActiveAvgCurrentMa.value * (occasionallyActiveTimeMs.value / 3600000)
+    let activeTimeMedian = activeTimeMs.value * (1 - occasionallyActiveFrequency.value)
+      + occasionallyActiveTimeMs.value * occasionallyActiveFrequency.value
 
-    lifetimeDhm() {
-      let seconds = Number(this.lifetimeSeconds);
-      const d = Math.floor(seconds / (3600 * 24));
-      const h = Math.floor(seconds % (3600 * 24) / 3600);
-      const m = Math.floor(seconds % 3600 / 60);
+    cycleTimeInHours = (activeTimeMedian + sleepTimeMs.value) / 3600000
+    mAhWhenActive = mAhWhenActive * (1 - occasionallyActiveFrequency.value)
+      + mAhOccasionallyActive * occasionallyActiveFrequency.value
+  }
 
-      const dDisplay = d > 0 ? d + (d == 1 ? " day, " : " days, ") : "";
-      const hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
-      const mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes") : "";
-      return dDisplay + hDisplay + mDisplay;
-    },
-  },
+  let mAhSelfDischargingByCycle = mAhSelfDischargingByHour.value * cycleTimeInHours
+  let mAhByCycle = mAhWhenActive + mAhWhenSleep + mAhSelfDischargingByCycle
 
-  head() {
-    return {
-      title: 'Danilo Pinotti - Battery Life Estimator',
-      meta: [
-        {
-          hid: 'keywords',
-          name: 'keywords',
-          content: 'iot, esp32, battery life, battery life estimator, 18650, power consumption, optimization, low power',
-        },
-        {
-          hid: "description",
-          name: "description",
-          content: 'Calculate an estimate of the battery life time of IoT devices.'
-        }
-      ]
-    };
-  },
+  let deviceCyclesBatteryCapacity = batteryCapacityMAh.value / mAhByCycle
+  return deviceCyclesBatteryCapacity * cycleTimeInHours * 3600
+})
 
-  data() {
-    return {
-      batteryCapacityMAh: 2500,
-      batterySelfDischargingPercentageYear: 0,
-      activeAvgCurrentMa: 100,
-      activeTimeMs: 400,
+const lifetimeMonths = computed(() => {
+  return lifetimeSeconds.value / 2629746
+})
 
-      occasionallyActiveEach: 0,
-      occasionallyActiveAvgCurrentMa: 200,
-      occasionallyActiveTimeMs: 11000,
+const batteryPercentageConsumptionByDay = computed(() => {
+  return 100 / lifetimeSeconds.value * 86400
+})
 
-      sleepAvgCurrentMa: 0.050,
-      sleepTimeMs: 150000,
-    }
-  },
-}
+const lifetimeDhm = computed(() => {
+  let seconds = Number(lifetimeSeconds.value)
+  const d = Math.floor(seconds / (3600 * 24))
+  const h = Math.floor(seconds % (3600 * 24) / 3600)
+  const m = Math.floor(seconds % 3600 / 60)
+
+  const dDisplay = d > 0 ? d + (d == 1 ? ' day, ' : ' days, ') : ''
+  const hDisplay = h > 0 ? h + (h == 1 ? ' hour, ' : ' hours, ') : ''
+  const mDisplay = m > 0 ? m + (m == 1 ? ' minute, ' : ' minutes') : ''
+  return dDisplay + hDisplay + mDisplay
+})
 </script>
 
-<style scoped>
-
-</style>

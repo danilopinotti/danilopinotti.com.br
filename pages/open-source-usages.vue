@@ -16,7 +16,7 @@
       </p>
 
       <ul class="list-disc ml-8">
-        <li v-for="technology in technologies" :key="name">
+        <li v-for="technology in technologies" :key="technology.name">
           <a class="link link-hover" :href="technology.link">{{ technology.name }}</a>
         </li>
       </ul>
@@ -34,23 +34,15 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: "open-source-usages",
-  computed: {
-    technologies() {
-      return [
-        {name: 'Nuxt JS', link: 'https://github.com/nuxt/nuxt.js'},
-        {name: 'TailwindCSS', link: 'https://github.com/tailwindlabs/tailwindcss'},
-        {name: 'Font Awesome', link: 'https://github.com/FortAwesome/Font-Awesome'},
-        {name: 'Lodash', link: 'https://github.com/lodash/lodash'},
-        {name: 'Moment JS', link: 'https://github.com/moment/moment'},
-        {name: 'DaisyUI', link: 'https://github.com/saadeghi/daisyui'},
-        {name: 'Hero Icons', link: 'https://heroicons.com'},
-      ]
-    }
-  },
-}
+<script setup>
+const technologies = [
+  { name: 'Nuxt', link: 'https://github.com/nuxt/nuxt' },
+  { name: 'TailwindCSS', link: 'https://github.com/tailwindlabs/tailwindcss' },
+  { name: 'Iconify (via @nuxt/icon)', link: 'https://github.com/iconify/iconify' },
+  { name: 'DaisyUI', link: 'https://github.com/saadeghi/daisyui' },
+  { name: 'date-fns', link: 'https://github.com/date-fns/date-fns' },
+  { name: 'Hero Icons', link: 'https://heroicons.com' },
+]
 </script>
 
 <style scoped>

@@ -20,10 +20,7 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: "base64"
-}
+<script setup>
 </script>
 
 <style scoped>

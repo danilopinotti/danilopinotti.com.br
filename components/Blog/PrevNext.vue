@@ -2,7 +2,7 @@
   <div class="block md:flex justify-between">
     <div class="w-full md:w-1/2 flex justify-start mb-2 md:mb-0">
       <NuxtLink v-if="next"
-                :to="{ name: routeName, params: { slug: next.slug } }"
+                :to="itemPath(next)"
                 class="btn normal-case w-full xl:w-3/4">
         {{ next.title }}
       </NuxtLink>
@@ -10,7 +10,7 @@
     </div>
     <div class="w-full md:w-1/2 flex justify-end">
       <NuxtLink v-if="prev"
-                :to="{ name: routeName, params: { slug: prev.slug } }"
+                :to="itemPath(prev)"
                 class="btn normal-case w-full xl:w-3/4">
         {{ prev.title }}
       </NuxtLink>
@@ -19,22 +19,26 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    routeName: {
-      type: String,
-      default: 'blog-slug'
-    },
-    prev: {
-      type: Object,
-      default: () => null
-    },
-    next: {
-      type: Object,
-      default: () => null
-    }
+<script setup>
+const props = defineProps({
+  routePrefix: {
+    type: String,
+    default: '/blog'
+  },
+  prev: {
+    type: Object,
+    default: () => null
+  },
+  next: {
+    type: Object,
+    default: () => null
   }
+})
+
+function itemPath(item) {
+  if (!item?._path) return ''
+  const slug = item._path.split('/').pop()
+  return `${props.routePrefix}/${slug}`
 }
 </script>
 

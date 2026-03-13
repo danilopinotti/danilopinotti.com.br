@@ -1,17 +1,15 @@
 <template>
   <div class="bg-white text-gray-800" data-theme="light">
-    <SharedLayoutHeader></SharedLayoutHeader>
+    <SharedLayoutHeader />
     <div>
-      <Nuxt></Nuxt>
+      <slot />
     </div>
-    <SharedLayoutFooter></SharedLayoutFooter>
+    <SharedLayoutFooter />
   </div>
 </template>
 
-<script>
-export default {
-  name: "default"
-}
+<script setup>
+// No script needed for the default layout
 </script>
 
 <style scoped>

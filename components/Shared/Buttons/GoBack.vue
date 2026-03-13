@@ -6,13 +6,11 @@
   </button>
 </template>
 
-<script>
-export default {
-  name: 'GoBack',
-  methods: {
-    goBack () {
-      return this.$router.go(-1)
-    }
-  },
+<script setup>
+
+const router = useRouter()
+
+function goBack() {
+  return router.go(-1)
 }
 </script>

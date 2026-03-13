@@ -9,12 +9,12 @@
           <NuxtLink to="/presentations">Presentations</NuxtLink>
         </li>
         <li>
-          {{ presentation.title }}
+          {{ presentation?.title }}
         </li>
       </ul>
     </div>
     <div class="mt-0 md:mt-8">
-      <div class="flex flex-wrap justify-center">
+      <div class="flex flex-wrap justify-center" v-if="presentation">
         <div class="px-4">
           <div class="flex flex-wrap justify-center gap-8">
             <iframe :src="presentation.embed_link" width="595" height="485"
@@ -32,18 +32,18 @@
                 <a :href="presentation.link"
                    class="hover:text-gray-900 hover:underline"
                    title="Abrir link externo" target="_blank">
-                  <fa icon="arrow-up-right-from-square" class="mr-1"></fa>
+                  <Icon name="fa6-solid:arrow-up-right-from-square" class="mr-1" />
                   Abrir link externo
                 </a>
                 <p class="justify-self-end">
-                  <fa :icon="['far', 'calendar']" class="mr-1"></fa>
-                  Data de publicação: {{ $formatDate(presentation.publishedAt) }}
+                  <Icon name="fa6-regular:calendar" class="mr-1" />
+                  Data de publicação: {{ formatDate(presentation.publishedAt) }}
                 </p>
               </div>
               <BlogAuthor :author="presentation.author" class="mt-4"/>
 
               <div class="w-full mx-auto">
-                <BlogPrevNext route-name="presentations-slug" class="mt-8" :prev="prev" :next="next"/>
+                <BlogPrevNext route-prefix="/presentations" class="mt-8" :prev="surround?.[0]" :next="surround?.[1]"/>
               </div>
             </div>
           </div>
@@ -53,48 +53,36 @@
   </div>
 </template>
 
-<script>
-import Author from "~/components/Blog/Author";
-import GoBack from "@/components/Shared/Buttons/GoBack";
+<script setup>
+const route = useRoute()
+const slug = route.params.slug
+const { formatDate } = useFormatDate()
 
-export default {
-  components: {GoBack, Author},
-  head() {
-    let meta = [
-      {
-        hid: "description",
-        name: "description",
-        content: this.presentation.description
-      },
-    ];
+const { data: presentation } = await useAsyncData(`presentation-${slug}`, () =>
+  queryContent(`/presentations/${slug}`).findOne()
+)
 
-    if (this.presentation.keywords) {
-      meta.push({
-        hid: "keywords",
-        name: "keywords",
-        content: this.presentation.keywords
-      });
-    }
+const { data: surround } = await useAsyncData(`presentation-surround-${slug}`, () =>
+  queryContent('/presentations')
+    .only(['title', '_path'])
+    .sort({ publishedAt: 1 })
+    .findSurround(`/presentations/${slug}`)
+)
 
-    return {
-      title: this.presentation.title,
-      meta: meta
-    };
-  },
-  async asyncData({$content, params}) {
-    const presentation = await $content('presentations', params.slug).fetch()
+useHead(() => {
+  if (!presentation.value) return {}
 
-    const [prev, next] = await $content('presentations')
-      .only(['title', 'slug'])
-      .sortBy('publishedAt', 'asc')
-      .surround(params.slug)
-      .fetch()
+  const meta = [
+    { name: 'description', content: presentation.value.description },
+  ]
 
-    return {
-      presentation,
-      prev,
-      next
-    }
-  },
-}
+  if (presentation.value.keywords) {
+    meta.push({ name: 'keywords', content: presentation.value.keywords })
+  }
+
+  return {
+    title: presentation.value.title,
+    meta,
+  }
+})
 </script>

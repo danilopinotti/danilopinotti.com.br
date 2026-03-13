@@ -2,7 +2,6 @@
   <footer class="footer p-10 bg-base-200 text-base-content">
     <div>
       <span class="footer-title">Tools</span>
-
       <NuxtLink to="/tools/device-battery-life-estimator" class="link link-hover">Device Battery Life Estimator
       </NuxtLink>
       <NuxtLink to="/tools/base64" class="link link-hover">Base64 Encoder/Decoder
@@ -27,14 +26,14 @@
         <div>
           <div class="grid grid-flow-col gap-4 text-3xl">
             <a class="hover:text-black" href="https://github.com/danilopinotti" title="Github">
-              <fa :icon="['fab', 'github']" class="mr-1"></fa>
+              <Icon name="fa6-brands:github" class="mr-1" />
             </a>
             <a class="hover:text-[#0E76A8]" href="https://www.linkedin.com/in/danilopinotti/" title="Linkedin">
-              <fa :icon="['fab', 'linkedin']" class="mr-1"></fa>
+              <Icon name="fa6-brands:linkedin" class="mr-1" />
             </a>
 
             <a class="hover:text-[#00ACEE]" href="https://twitter.com/danilopinotti" title="Twitter">
-              <fa :icon="['fab', 'twitter']" class="mr-1"></fa>
+              <Icon name="fa6-brands:twitter" class="mr-1" />
             </a>
           </div>
         </div>
@@ -47,10 +46,7 @@
   </footer>
 </template>
 
-<script>
-export default {
-  name: "Footer"
-}
+<script setup>
 </script>
 
 <style scoped>

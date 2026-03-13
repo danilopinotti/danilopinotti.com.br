@@ -1,11 +1,11 @@
 <template>
-  <header class="navbar  p-0 text-gray-600 body-font bg-base-200 md:border-b">
+  <header class="navbar p-0 text-gray-600 body-font bg-base-200 md:border-b">
     <div class="container mx-auto flex flex-wrap pt-5 md:pb-5 flex-col md:flex-row items-center">
       <NuxtLink class="order-1 flex title-font font-medium items-center mb-2 md:mb-0" to="/">
         <span
           class="m-0 md:ml-3 text-3xl font-semibold hover:text-black text-transparent bg-clip-text
             bg-gradient-to-r from-slate-600 to-slate-700">
-          <SharedIconsCode class="text-sky-600"></SharedIconsCode>
+          <Icon name="heroicons:code-bracket" class="w-6 h-6 inline text-sky-600" />
           Danilo Pinotti
         </span>
       </NuxtLink>
@@ -14,16 +14,16 @@
       w-full md:w-auto text-center flex items-center justify-center border-b md:border-b-0">
         <NuxtLink
           class="text-sky-600 hover:text-sky-800 hover:bg-gray-200 rounded-lg p-2 font-semibold flex items-center gap-1"
-          to="/presentations" title="Tools">
-          <SharedIconsPresentation class="w-5 h-5"></SharedIconsPresentation>
+          to="/presentations" title="Presentations">
+          <Icon name="heroicons:presentation-chart-line" class="w-5 h-5" />
           Presentations
         </NuxtLink>
         <div class="dropdown dropdown-end text-md">
           <div tabindex="0"
                class="text-sky-600 hover:text-sky-800 hover:bg-gray-200 rounded-lg p-2 cursor-pointer font-semibold flex items-center gap-1">
-            <SharedIconsTools class="w-5 h-5"></SharedIconsTools>
+            <Icon name="heroicons:wrench-screwdriver" class="w-5 h-5" />
             Tools
-            <fa :icon="['fas', 'chevron-down']" class="text-sm text-gray-400"></fa>
+            <Icon name="fa6-solid:chevron-down" class="text-sm text-gray-400" />
           </div>
           <ul class="dropdown-content menu text-left p-2 shadow bg-base-100 rounded-box mt-4 z-10">
             <li class="text-left">
@@ -31,7 +31,7 @@
                         to="/tools/device-battery-life-estimator">
                 <div class="w-full flex justify-between">
                   <h2 class="font-bold text-left">Battery Life Estimator</h2>
-                  <fa icon="battery-full" class="text-green-600 mr-1"></fa>
+                  <Icon name="fa6-solid:battery-full" class="text-green-600 mr-1" />
                 </div>
                 <p>Calculate an estimate of the battery life of IoT devices.</p>
               </NuxtLink>
@@ -41,7 +41,7 @@
                         to="/tools/base64">
                 <div class="w-full flex justify-between">
                   <h2 class="font-bold text-left">Base64 Encoder/Decoder</h2>
-                  <fa icon="code" class="text-black mr-1 text-right"></fa>
+                  <Icon name="fa6-solid:code" class="text-black mr-1 text-right" />
                 </div>
                 <p>Simply Encode and Decode Base64 strings</p>
               </NuxtLink>
@@ -51,7 +51,7 @@
                         to="/tools/document-generator">
                 <div class="w-full flex justify-between">
                   <h2 class="font-bold text-left">Document Generator (CPF and CNPJ)</h2>
-                  <fa :icon="['far', 'address-card']" class="text-blue-600 mr-1"></fa>
+                  <Icon name="fa6-regular:address-card" class="text-blue-600 mr-1" />
                 </div>
                 <p>Generate valid CPF and CNPJ for testing purposes</p>
               </NuxtLink>
@@ -65,27 +65,30 @@
         <a class="text-[#1E1E1E] text-2xl md:text-3xl hover:scale-125"
            href="https://github.com/danilopinotti"
            title="Github Profile">
-          <fa :icon="['fab', 'github']" class="mr-1"></fa>
+          <Icon name="fa6-brands:github" class="mr-1" />
         </a>
         <a class="text-[#0E76A8] text-2xl md:text-3xl hover:scale-125"
            href="https://www.linkedin.com/in/danilopinotti/"
-           title="Linkedin Profile"
-        >
-          <fa :icon="['fab', 'linkedin']" class="mr-1"></fa>
+           title="Linkedin Profile">
+          <Icon name="fa6-brands:linkedin" class="mr-1" />
         </a>
-
         <a class="text-[#00ACEE] text-2xl md:text-3xl hover:scale-125"
            href="https://twitter.com/danilopinotti"
            title="Twitter Profile">
-          <fa :icon="['fab', 'twitter']" class="mr-1"></fa>
+          <Icon name="fa6-brands:twitter" class="mr-1" />
         </a>
       </nav>
     </div>
   </header>
 </template>
 
+<script setup>
+</script>
+
 <style scoped>
-a.nuxt-link-active:not([href='/']) {
+@reference "tailwindcss";
+
+a.router-link-active:not([href='/']) {
   @apply bg-gray-100;
 }
 </style>

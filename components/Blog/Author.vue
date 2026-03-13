@@ -1,26 +1,24 @@
 <template>
-  <component :is="getAuthorComponentName()">
-    <BlogAuthorWrapper
-      name="Desconhecido"
-    ></BlogAuthorWrapper>
+  <component :is="authorComponentName">
+    <BlogAuthorWrapper name="Desconhecido" />
   </component>
 </template>
 
-<script>
-  import {camelCase, startCase} from 'lodash';
-  export default {
-    props: {
-      author: {
-        type: Object,
-        required: true
-      }
-    },
-    methods: {
-      getAuthorComponentName() {
-        return 'Authors' + startCase(camelCase(this.author.name)).replace(/ /g, '');
-      }
-    }
+<script setup>
+const props = defineProps({
+  author: {
+    type: Object,
+    required: true
   }
+})
+
+const authorComponentName = computed(() => {
+  const name = props.author.name
+  return 'Authors' + name
+    .split(/[\s-]+/)
+    .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+    .join('')
+})
 </script>
 
 <style scoped>

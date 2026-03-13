@@ -20,10 +20,7 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: "document-generator"
-}
+<script setup>
 </script>
 
 <style scoped>

@@ -17,43 +17,28 @@
   </button>
 </template>
 
-<script>
-export default {
-  name: 'CopyButton',
-  props: {
-    text: {
-      type: String,
-      required: true
-    }
-  },
-  data() {
-    return {
-      copied: false
-    };
-  },
-  computed: {
-    tooltipText() {
-      return this.copied ? 'Copied!' : 'Copy';
-    },
-    tooltipClass() {
-      return this.copied ? 'tooltip-open tooltip-success' : 'tooltip-bottom';
-    }
-  },
-  methods: {
-    async copyToClipboard() {
-      if (!this.text) return;
-
-      try {
-        await navigator.clipboard.writeText(this.text);
-        this.copied = true;
-
-        setTimeout(() => {
-          this.copied = false;
-        }, 2000);
-      } catch (err) {
-        console.error('Fail to copy to clipboard:', err);
-      }
-    }
+<script setup>
+const props = defineProps({
+  text: {
+    type: String,
+    required: true
   }
-};
+})
+
+const copied = ref(false)
+
+async function copyToClipboard() {
+  if (!props.text) return
+
+  try {
+    await navigator.clipboard.writeText(props.text)
+    copied.value = true
+
+    setTimeout(() => {
+      copied.value = false
+    }, 2000)
+  } catch (err) {
+    console.error('Fail to copy to clipboard:', err)
+  }
+}
 </script>

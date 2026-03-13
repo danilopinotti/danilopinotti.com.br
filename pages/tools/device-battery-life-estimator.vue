@@ -20,10 +20,7 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: "device-battery-life-estimator"
-}
+<script setup>
 </script>
 
 <style scoped>

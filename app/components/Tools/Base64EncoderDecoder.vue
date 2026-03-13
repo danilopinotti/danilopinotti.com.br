@@ -1,51 +1,46 @@
 <template>
   <div>
-    Simply Encode and Decode Base64 strings
+    <p class="mb-4">Simply Encode and Decode Base64 strings</p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="mt-4">
-        <div>
-          <h2 class="text-lg font-bold mb-2">
-            <Icon name="fa6-solid:keyboard" class="mr-1 text-green-600" />
-            Text Input
-          </h2>
-          <div class="form-control">
-            <textarea class="textarea h-24 textarea-bordered"
-                      :placeholder="inputPlaceholder"
-                      :value="textInput"
-                      @input="encode($event.target.value)"
-            >
-            </textarea>
-          </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <h2 class="text-lg font-bold mb-2">
+          <Icon name="fa6-solid:keyboard" class="mr-1 text-green-600" />
+          Text Input
+        </h2>
+        <div class="form-control">
+          <textarea class="textarea textarea-bordered w-full h-48"
+                    :placeholder="inputPlaceholder"
+                    :value="textInput"
+                    @input="encode($event.target.value)"
+          />
         </div>
       </div>
 
-      <div class="mt-4">
+      <div>
         <h2 class="text-lg font-bold mb-2">
           <Icon name="fa6-solid:code" class="mr-1 text-blue-600" />
           Base64 Output
         </h2>
-
         <div class="form-control">
-            <textarea class="textarea h-24 textarea-bordered"
-                      placeholder="Output Data"
-                      v-model="textOutput"
-            >
-            </textarea>
-        </div>
-
-        <div class="prose mt-5">
-          <p>
-            This was useful for you? Do you have a suggestion? Please, consider submit a PR on
-            <a class="link"
-               target="_blank"
-               href="https://github.com/danilopinotti/danilopinotti.com.br/blob/master/components/Tools/Base64EncoderDecoder.vue">
-              this project on GitHub
-              <Icon name="fa6-brands:github" />
-            </a>
-          </p>
+          <textarea class="textarea textarea-bordered w-full h-48"
+                    placeholder="Output Data"
+                    v-model="textOutput"
+          />
         </div>
       </div>
+    </div>
+
+    <div class="prose mt-6">
+      <p>
+        This was useful for you? Do you have a suggestion? Please, consider submit a PR on
+        <a class="link"
+           target="_blank"
+           href="https://github.com/danilopinotti/danilopinotti.com.br/blob/master/components/Tools/Base64EncoderDecoder.vue">
+          this project on GitHub
+          <Icon name="fa6-brands:github" />
+        </a>
+      </p>
     </div>
   </div>
 </template>

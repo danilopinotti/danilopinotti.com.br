@@ -1,18 +1,7 @@
 <template>
   <div class="container px-5 pt-1 pb-12 mx-auto">
-    <div class="text-sm breadcrumbs">
-      <ul>
-        <li>
-          <NuxtLink to="/">Home</NuxtLink>
-        </li>
-        <li>
-          Presentations
-        </li>
-      </ul>
-    </div>
-    <h1 class="text-2xl font-bold mb-4">
-      Presentations
-    </h1>
+    <SharedBreadcrumbs :items="[{ label: 'Home', to: '/' }, { label: 'Presentations' }]"/>
+    <h1 class="text-2xl font-bold mb-4 text-gray-600 ">Presentations</h1>
     <div class="mt-0 md:mt-8 grid grid-cols-1 md:grid-cols-3 gap-3">
       <div v-for="presentation in presentations" :key="presentation.path"
            class="mockup-window border border-base-300">
@@ -30,7 +19,7 @@
           </NuxtLink>
 
           <div class="mt-2 text-sm font-light">
-            <Icon name="fa6-regular:calendar" class="mr-1" />
+            <Icon name="fa6-regular:calendar" class="mr-1"/>
             Data de publicação: {{ formatDate(presentation.publishedAt) }}
           </div>
         </div>
@@ -40,9 +29,9 @@
 </template>
 
 <script setup>
-const { formatDate } = useFormatDate()
+const {formatDate} = useFormatDate()
 
-const { data: presentations } = await useAsyncData('presentations', () =>
+const {data: presentations} = await useAsyncData('presentations', () =>
   queryCollection('presentations')
     .select('title', 'description', 'path', 'author', 'link', 'embed_link', 'publishedAt')
     .order('publishedAt', 'DESC')

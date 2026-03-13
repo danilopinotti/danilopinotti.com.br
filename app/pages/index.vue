@@ -1,10 +1,7 @@
 <template>
   <section class="text-gray-600 body-font antialiased">
     <div class="container px-6 md:px-16 py-10 mx-auto">
-      <div class="flex items-center gap-3 mb-8">
-        <span class="text-sm font-semibold uppercase tracking-widest text-gray-400">Blog</span>
-        <div class="flex-1 h-px bg-gray-100"></div>
-      </div>
+      <SharedSectionTitle title="Blog" />
       <div class="grid grid-cols-1 gap-6">
         <NuxtLink
           v-for="article of articles"

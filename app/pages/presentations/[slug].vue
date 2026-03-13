@@ -1,18 +1,6 @@
 <template>
   <div class="container px-5 pt-1 pb-12 mx-auto">
-    <div class="text-sm breadcrumbs">
-      <ul>
-        <li>
-          <NuxtLink to="/">Home</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/presentations">Presentations</NuxtLink>
-        </li>
-        <li>
-          {{ presentation?.title }}
-        </li>
-      </ul>
-    </div>
+    <SharedBreadcrumbs :items="[{ label: 'Home', to: '/' }, { label: 'Presentations', to: '/presentations' }, { label: presentation?.title }]" />
     <div class="mt-0 md:mt-8">
       <div class="flex flex-wrap justify-center" v-if="presentation">
         <div class="px-4">

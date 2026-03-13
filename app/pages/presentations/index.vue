@@ -1,7 +1,7 @@
 <template>
   <section class="text-gray-600 body-font overflow-hidden">
     <div class="container px-5 pt-1 pb-12 mx-auto">
-      <SharedBreadcrumbs :items="[{ label: 'Home', to: '/' }, { label: 'Presentations' }]" />
+      <SharedBreadcrumbs :items="[{ label: 'Home', to: '/' }, { label: 'Presentations', icon: 'fa6-solid:chalkboard-user' }]" />
       <h1 class="text-2xl font-bold mb-8">Presentations</h1>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">

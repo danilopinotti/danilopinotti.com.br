@@ -1,7 +1,7 @@
 <template>
   <section class="text-gray-600 body-font overflow-hidden">
     <div class="container px-5 pt-1 pb-12 mx-auto" v-if="presentation">
-      <SharedBreadcrumbs :items="[{ label: 'Home', to: '/' }, { label: 'Presentations', to: '/presentations' }, { label: presentation.title }]" />
+      <SharedBreadcrumbs :items="[{ label: 'Home', to: '/' }, { label: 'Presentations', to: '/presentations', icon: 'fa6-solid:chalkboard-user' }, { label: presentation.title }]" />
 
       <h1 class="text-2xl font-bold text-gray-800 mb-6">{{ presentation.title }}</h1>
 

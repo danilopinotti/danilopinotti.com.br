@@ -11,7 +11,7 @@ export const useTools = (): Tool[] => [
     label: 'Battery Life Estimator',
     description: 'Estimate battery life of IoT devices',
     to: '/tools/device-battery-life-estimator',
-    icon: 'fa6-solid:battery-full',
+    icon: 'fa6-solid:battery-half',
     iconClass: 'text-green-500',
   },
   {

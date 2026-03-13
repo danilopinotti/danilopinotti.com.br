@@ -1,7 +1,7 @@
 <template>
   <section class="text-gray-600 body-font overflow-hidden">
     <div class="container px-5 pt-1 pb-12 mx-auto">
-      <SharedBreadcrumbs :items="[{ label: 'Home', to: '/' }, { label: 'Tools' }]" />
+      <SharedBreadcrumbs :items="[{ label: 'Home', to: '/' }, { label: 'Tools', icon: 'heroicons:wrench-screwdriver' }]" />
 
       <h1 class="text-2xl font-bold mb-8">Tools</h1>
 

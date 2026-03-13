@@ -34,7 +34,13 @@ const tools = useTools()
 
 useHead({
   title: 'Tools',
-  meta: [{ name: 'description', content: 'A collection of useful tools.' }],
+  meta: [
+    { name: 'description', content: 'Ferramentas úteis para desenvolvedores: gerador de UUID, codificador Base64, gerador de CPF/CNPJ e estimador de bateria para IoT.' },
+    { property: 'og:title', content: 'Tools | Danilo Pinotti' },
+    { property: 'og:description', content: 'Ferramentas úteis para desenvolvedores: gerador de UUID, codificador Base64, gerador de CPF/CNPJ e estimador de bateria para IoT.' },
+    { property: 'og:url', content: 'https://danilopinotti.com.br/tools' },
+  ],
+  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br/tools' }],
 })
 </script>
 

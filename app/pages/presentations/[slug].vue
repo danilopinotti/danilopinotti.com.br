@@ -72,8 +72,25 @@ const { data: surround } = await useAsyncData(`presentation-surround-${slug}`, (
 useHead(() => {
   if (!presentation.value) return {}
 
+  const siteUrl = 'https://danilopinotti.com.br'
+  const pageUrl = `${siteUrl}/presentations/${slug}`
+
   const meta = [
     { name: 'description', content: presentation.value.description },
+    // Open Graph
+    { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: pageUrl },
+    { property: 'og:title', content: presentation.value.title },
+    { property: 'og:description', content: presentation.value.description },
+    { property: 'og:image', content: `${siteUrl}/android-chrome-512x512.png` },
+    { property: 'og:locale', content: 'pt_BR' },
+    { property: 'article:published_time', content: presentation.value.publishedAt },
+    { property: 'article:author', content: presentation.value.author?.name || 'Danilo Pinotti' },
+    // Twitter
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: presentation.value.title },
+    { name: 'twitter:description', content: presentation.value.description },
+    { name: 'twitter:image', content: `${siteUrl}/android-chrome-512x512.png` },
   ]
 
   if (presentation.value.keywords) {
@@ -83,6 +100,7 @@ useHead(() => {
   return {
     title: presentation.value.title,
     meta,
+    link: [{ rel: 'canonical', href: pageUrl }],
   }
 })
 </script>

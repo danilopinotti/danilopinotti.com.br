@@ -14,6 +14,17 @@
 
 <script setup>
 const tool = useTools().find(t => t.to === '/tools/base64')
+
+useHead({
+  title: 'Base64 Encoder/Decoder',
+  meta: [
+    { name: 'description', content: 'Encode and decode strings to and from Base64 format online, directly in your browser.' },
+    { property: 'og:title', content: 'Base64 Encoder/Decoder | Danilo Pinotti' },
+    { property: 'og:description', content: 'Encode and decode strings to and from Base64 format online, directly in your browser.' },
+    { property: 'og:url', content: 'https://danilopinotti.com.br/tools/base64' },
+  ],
+  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br/tools/base64' }],
+})
 </script>
 
 <style scoped>

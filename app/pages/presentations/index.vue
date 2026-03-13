@@ -48,6 +48,17 @@
 <script setup>
 const { formatDate } = useFormatDate()
 
+useHead({
+  title: 'Presentations',
+  meta: [
+    { name: 'description', content: 'Slides e apresentações técnicas sobre desenvolvimento de software, Laravel, Vue.js, Git, testes automatizados e mais.' },
+    { property: 'og:title', content: 'Presentations | Danilo Pinotti' },
+    { property: 'og:description', content: 'Slides e apresentações técnicas sobre desenvolvimento de software, Laravel, Vue.js, Git, testes automatizados e mais.' },
+    { property: 'og:url', content: 'https://danilopinotti.com.br/presentations' },
+  ],
+  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br/presentations' }],
+})
+
 const { data: presentations } = await useAsyncData('presentations', () =>
   queryCollection('presentations')
     .select('title', 'description', 'path', 'publishedAt')

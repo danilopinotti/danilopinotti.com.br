@@ -67,6 +67,14 @@
 <script setup>
 const { formatDate } = useFormatDate()
 
+useHead({
+  title: 'Blog',
+  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br' }],
+  meta: [
+    { property: 'og:url', content: 'https://danilopinotti.com.br' },
+  ],
+})
+
 const { data: articles } = await useAsyncData('articles', () =>
   queryCollection('articles')
     .select('title', 'description', 'image', 'path', 'publishedAt', 'tags')

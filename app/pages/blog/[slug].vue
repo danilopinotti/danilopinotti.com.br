@@ -26,6 +26,7 @@
 const route = useRoute()
 const slug = route.params.slug
 const { formatDate } = useFormatDate()
+const siteUrl = 'https://danilopinotti.com.br'
 
 const { data: article } = await useAsyncData(`article-${slug}`, () =>
   queryCollection('articles').path(`/articles/${slug}`).first()
@@ -41,17 +42,70 @@ const { data: surround } = await useAsyncData(`article-surround-${slug}`, () =>
 useHead(() => {
   if (!article.value) return {}
 
+  const pageUrl = `${siteUrl}/blog/${slug}`
+  const image = article.value.image
+    ? (article.value.image.startsWith('http') ? article.value.image : `${siteUrl}${article.value.image}`)
+    : `${siteUrl}/android-chrome-512x512.png`
+
   const meta = [
     { name: 'description', content: article.value.description },
+    // Open Graph
+    { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: pageUrl },
+    { property: 'og:title', content: article.value.title },
+    { property: 'og:description', content: article.value.description },
+    { property: 'og:image', content: image },
+    { property: 'og:locale', content: 'pt_BR' },
+    { property: 'article:published_time', content: article.value.publishedAt },
+    { property: 'article:author', content: article.value.author?.name || 'Danilo Pinotti' },
+    // Twitter
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: article.value.title },
+    { name: 'twitter:description', content: article.value.description },
+    { name: 'twitter:image', content: image },
   ]
+
+  if (article.value.tags) {
+    article.value.tags.split(',').forEach((tag) => {
+      meta.push({ property: 'article:tag', content: tag.trim() })
+    })
+  }
 
   if (article.value.keywords) {
     meta.push({ name: 'keywords', content: article.value.keywords })
   }
 
+  const jsonLd = {
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: article.value.title,
+      description: article.value.description,
+      image,
+      datePublished: article.value.publishedAt,
+      author: {
+        '@type': 'Person',
+        name: article.value.author?.name || 'Danilo Pinotti',
+        url: siteUrl,
+      },
+      publisher: {
+        '@type': 'Person',
+        name: 'Danilo Pinotti',
+        url: siteUrl,
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': pageUrl,
+      },
+    }),
+  }
+
   return {
     title: article.value.title,
     meta,
+    link: [{ rel: 'canonical', href: pageUrl }],
+    script: [jsonLd],
   }
 })
 </script>

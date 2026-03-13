@@ -14,6 +14,17 @@
 
 <script setup>
 const tool = useTools().find(t => t.to === '/tools/document-generator')
+
+useHead({
+  title: 'Document Generator (CPF and CNPJ)',
+  meta: [
+    { name: 'description', content: 'Gere CPF e CNPJ válidos para testes de software de forma rápida e simples.' },
+    { property: 'og:title', content: 'Document Generator (CPF and CNPJ) | Danilo Pinotti' },
+    { property: 'og:description', content: 'Gere CPF e CNPJ válidos para testes de software de forma rápida e simples.' },
+    { property: 'og:url', content: 'https://danilopinotti.com.br/tools/document-generator' },
+  ],
+  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br/tools/document-generator' }],
+})
 </script>
 
 <style scoped>

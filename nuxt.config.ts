@@ -1,11 +1,13 @@
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
-  ssr: false,
-
   app: {
     head: {
+      titleTemplate: '%s | Danilo Pinotti',
       title: 'Danilo Pinotti',
+      htmlAttrs: {
+        lang: 'pt-BR',
+      },
       meta: [
         {charset: 'utf-8'},
         {name: 'viewport', content: 'width=device-width, initial-scale=1'},
@@ -16,7 +18,6 @@ export default defineNuxtConfig({
         {name: 'format-detection', content: 'telephone=no'},
         {name: 'robots', content: 'index, follow'},
         {name: 'author', content: 'Danilo Pinotti'},
-        {name: 'type', content: 'website'},
         {
           name: 'keywords',
           content: 'blog, danilopinotti, dev, web development, laravel, performance, git, aws, tailwindcss',
@@ -29,10 +30,18 @@ export default defineNuxtConfig({
           property: 'og:description',
           content: 'Este é meu site sobre tecnologia, programação e outros assuntos. Sou desenvolvedor Web Full-Stack Laravel/VueJs/TailwindCSS, desenvolvedor IoT e eterno estudante.',
         },
+        {property: 'og:image', content: 'https://danilopinotti.com.br/android-chrome-512x512.png'},
+        {property: 'og:image:width', content: '512'},
+        {property: 'og:image:height', content: '512'},
+        {property: 'og:locale', content: 'pt_BR'},
+        {name: 'twitter:card', content: 'summary_large_image'},
+        {name: 'twitter:site', content: '@danilopinotti'},
+        {name: 'twitter:title', content: 'Danilo Pinotti'},
         {
-          property: 'og:image',
-          content: '/android-chrome-512x512.png',
+          name: 'twitter:description',
+          content: 'Este é meu site sobre tecnologia, programação e outros assuntos. Sou desenvolvedor Web Full-Stack Laravel/VueJs/TailwindCSS, desenvolvedor IoT e eterno estudante.',
         },
+        {name: 'twitter:image', content: 'https://danilopinotti.com.br/android-chrome-512x512.png'},
       ],
       link: [
         {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
@@ -65,7 +74,8 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    sources: ['/api/__sitemap__/urls'],
+    sources: ['/api/_sitemap/urls'],
+    autoLastmod: true,
   },
 
   site: {

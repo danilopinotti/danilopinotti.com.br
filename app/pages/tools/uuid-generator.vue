@@ -12,5 +12,16 @@
 
 <script setup>
 const tool = useTools().find(t => t.to === '/tools/uuid-generator')
+
+useHead({
+  title: 'UUID Generator',
+  meta: [
+    { name: 'description', content: 'Generate UUIDs in versions 4, 5 and 7 instantly, directly in your browser.' },
+    { property: 'og:title', content: 'UUID Generator | Danilo Pinotti' },
+    { property: 'og:description', content: 'Generate UUIDs in versions 4, 5 and 7 instantly, directly in your browser.' },
+    { property: 'og:url', content: 'https://danilopinotti.com.br/tools/uuid-generator' },
+  ],
+  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br/tools/uuid-generator' }],
+})
 </script>
 

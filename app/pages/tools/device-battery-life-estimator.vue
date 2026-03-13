@@ -14,6 +14,17 @@
 
 <script setup>
 const tool = useTools().find(t => t.to === '/tools/device-battery-life-estimator')
+
+useHead({
+  title: 'Device Battery Life Estimator',
+  meta: [
+    { name: 'description', content: 'Estimate the battery life of IoT devices based on capacity and consumption parameters.' },
+    { property: 'og:title', content: 'Device Battery Life Estimator | Danilo Pinotti' },
+    { property: 'og:description', content: 'Estimate the battery life of IoT devices based on capacity and consumption parameters.' },
+    { property: 'og:url', content: 'https://danilopinotti.com.br/tools/device-battery-life-estimator' },
+  ],
+  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br/tools/device-battery-life-estimator' }],
+})
 </script>
 
 <style scoped>

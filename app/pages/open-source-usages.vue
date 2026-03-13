@@ -31,6 +31,15 @@
 </template>
 
 <script setup>
+useHead({
+  title: 'Open Source Usages',
+  meta: [
+    { name: 'description', content: 'Open-source libraries and technologies used to build this website.' },
+    { property: 'og:url', content: 'https://danilopinotti.com.br/open-source-usages' },
+  ],
+  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br/open-source-usages' }],
+})
+
 const technologies = [
   { name: 'Nuxt', link: 'https://github.com/nuxt/nuxt' },
   { name: 'Nuxt Content', link: 'https://github.com/nuxt/content' },

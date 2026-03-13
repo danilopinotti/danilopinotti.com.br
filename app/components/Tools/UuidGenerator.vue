@@ -168,7 +168,12 @@ const v5Result = ref('')
 function onNamespaceChange() {
   const ns = namespaces.find(n => n.key === v5NamespaceKey.value)
   v5Namespace.value = ns?.value ?? ''
+  generateV5()
 }
+
+watch([v5Name, v5Namespace], () => {
+  generateV5()
+})
 
 function generateV5() {
   if (!v5Name.value || !v5Namespace.value) return

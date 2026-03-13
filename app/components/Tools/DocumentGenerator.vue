@@ -4,10 +4,10 @@
       Generate and Validate Brazilian documents
     </div>
 
-    <div role="alert" class="alert alert-warning shadow-sm mb-8">
-      <Icon name="heroicons:exclamation-triangle" class="stroke-current h-6 w-6" />
-      <span><strong>Warning:</strong> This tool must be used for testing and validation purposes only.</span>
-    </div>
+    <p class="text-sm text-warning-content mb-8 flex items-center gap-1.5 bg-warning/20 border border-warning/40 rounded px-3 py-2">
+      <Icon name="heroicons:exclamation-triangle" class="h-4 w-4 shrink-0 text-warning" />
+      This tool is intended for testing and validation purposes only.
+    </p>
 
     <div class="flex flex-col gap-10">
       <div>

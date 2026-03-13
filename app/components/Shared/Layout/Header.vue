@@ -1,94 +1,188 @@
 <template>
-  <header class="navbar p-0 text-gray-600 body-font bg-base-200 md:border-b">
-    <div class="container mx-auto flex flex-wrap pt-5 md:pb-5 flex-col md:flex-row items-center">
-      <NuxtLink class="order-1 flex title-font font-medium items-center mb-2 md:mb-0" to="/">
-        <span
-          class="m-0 md:ml-3 text-3xl font-semibold hover:text-black text-transparent bg-clip-text
-            bg-gradient-to-r from-slate-600 to-slate-700">
-          <Icon name="heroicons:code-bracket" class="w-6 h-6 inline text-sky-600" />
+  <header
+    :class="[
+      'sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-gray-200 transition-shadow duration-300',
+      scrolled ? 'shadow-md' : 'shadow-sm'
+    ]"
+  >
+    <div class="container mx-auto flex items-center justify-between px-4 h-18">
+
+      <!-- Logo -->
+      <NuxtLink class="flex items-center gap-2 shrink-0" to="/">
+        <Icon name="heroicons:code-bracket" class="text-sky-600" size="30" />
+        <span class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-slate-700 to-slate-900 hover:from-sky-600 hover:to-slate-700 transition-all duration-300">
           Danilo Pinotti
         </span>
       </NuxtLink>
 
-      <div class="order-3 md:order-2 mt-2 md:mt-0 md:ml-6 py-3 md:p-0 flex gap-1 bg-white md:bg-transparent
-      w-full md:w-auto text-center flex items-center justify-center border-b md:border-b-0">
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-1">
         <NuxtLink
-          class="text-sky-600 hover:text-sky-800 hover:bg-gray-200 rounded-lg p-2 font-semibold flex items-center gap-1"
-          to="/presentations" title="Presentations">
+          class="nav-link"
+          to="/presentations"
+          title="Presentations"
+        >
           <Icon name="heroicons:presentation-chart-line" class="w-5 h-5" />
           Presentations
         </NuxtLink>
-        <div class="dropdown dropdown-end text-md">
-          <div tabindex="0"
-               class="text-sky-600 hover:text-sky-800 hover:bg-gray-200 rounded-lg p-2 cursor-pointer font-semibold flex items-center gap-1">
+
+        <!-- Tools dropdown -->
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" class="nav-link cursor-pointer select-none">
             <Icon name="heroicons:wrench-screwdriver" class="w-5 h-5" />
             Tools
-            <Icon name="fa6-solid:chevron-down" class="text-sm text-gray-400" />
+            <Icon name="fa6-solid:chevron-down" class="w-3.5 h-3.5 text-gray-400" />
           </div>
-          <ul class="dropdown-content menu text-left p-2 shadow bg-base-100 rounded-box mt-4 z-10">
-            <li class="text-left">
-              <NuxtLink class="flex flex-col w-64"
-                        to="/tools/device-battery-life-estimator">
-                <div class="w-full flex justify-between">
-                  <h2 class="font-bold text-left">Battery Life Estimator</h2>
-                  <Icon name="fa6-solid:battery-full" class="text-green-600 mr-1" />
+          <ul class="dropdown-content menu p-2 mt-2 shadow-lg bg-white border border-gray-100 rounded-xl w-72 z-50">
+            <li>
+              <NuxtLink class="tool-link" to="/tools/device-battery-life-estimator" @click="closeDropdown">
+                <div>
+                  <p class="font-semibold text-gray-800">Battery Life Estimator</p>
+                  <p class="text-xs text-gray-500 mt-0.5">Estimate battery life of IoT devices</p>
                 </div>
-                <p>Calculate an estimate of the battery life of IoT devices.</p>
+                <Icon name="fa6-solid:battery-full" class="text-green-500 shrink-0" />
               </NuxtLink>
             </li>
-            <li class="text-left">
-              <NuxtLink class="flex flex-col w-64"
-                        to="/tools/base64">
-                <div class="w-full flex justify-between">
-                  <h2 class="font-bold text-left">Base64 Encoder/Decoder</h2>
-                  <Icon name="fa6-solid:code" class="text-black mr-1 text-right" />
+            <li>
+              <NuxtLink class="tool-link" to="/tools/base64" @click="closeDropdown">
+                <div>
+                  <p class="font-semibold text-gray-800">Base64 Encoder/Decoder</p>
+                  <p class="text-xs text-gray-500 mt-0.5">Encode and decode Base64 strings</p>
                 </div>
-                <p>Simply Encode and Decode Base64 strings</p>
+                <Icon name="fa6-solid:code" class="text-gray-700 shrink-0" />
               </NuxtLink>
             </li>
-            <li class="text-left">
-              <NuxtLink class="flex flex-col w-64"
-                        to="/tools/document-generator">
-                <div class="w-full flex justify-between">
-                  <h2 class="font-bold text-left">Document Generator (CPF and CNPJ)</h2>
-                  <Icon name="fa6-regular:address-card" class="text-blue-600 mr-1" />
+            <li>
+              <NuxtLink class="tool-link" to="/tools/document-generator" @click="closeDropdown">
+                <div>
+                  <p class="font-semibold text-gray-800">Document Generator</p>
+                  <p class="text-xs text-gray-500 mt-0.5">Generate valid CPF and CNPJ for testing</p>
                 </div>
-                <p>Generate valid CPF and CNPJ for testing purposes</p>
+                <Icon name="fa6-regular:address-card" class="text-blue-500 shrink-0" />
               </NuxtLink>
             </li>
           </ul>
         </div>
-      </div>
-
-      <nav
-        class="order-2 md:order-3 mt-0 md:mr-4 md:ml-auto flex flex-wrap items-center text-base justify-center gap-3 md:gap-4 font-bold">
-        <a class="text-[#1E1E1E] text-2xl md:text-3xl hover:scale-125"
-           href="https://github.com/danilopinotti"
-           title="Github Profile">
-          <Icon name="fa6-brands:github" class="mr-1" />
-        </a>
-        <a class="text-[#0E76A8] text-2xl md:text-3xl hover:scale-125"
-           href="https://www.linkedin.com/in/danilopinotti/"
-           title="Linkedin Profile">
-          <Icon name="fa6-brands:linkedin" class="mr-1" />
-        </a>
-        <a class="text-[#00ACEE] text-2xl md:text-3xl hover:scale-125"
-           href="https://twitter.com/danilopinotti"
-           title="Twitter Profile">
-          <Icon name="fa6-brands:twitter" class="mr-1" />
-        </a>
       </nav>
+
+      <!-- Social icons + mobile toggle -->
+      <div class="flex items-center gap-2">
+        <!-- Social icons (desktop) -->
+        <div class="hidden md:flex items-center gap-1">
+          <a class="social-icon text-[#1E1E1E]" href="https://github.com/danilopinotti" title="Github Profile" target="_blank">
+            <Icon name="fa6-brands:github" size="30" />
+          </a>
+          <a class="social-icon text-[#0E76A8]" href="https://www.linkedin.com/in/danilopinotti/" title="Linkedin Profile" target="_blank">
+            <Icon name="fa6-brands:linkedin" size="30" />
+          </a>
+          <a class="social-icon text-[#00ACEE]" href="https://twitter.com/danilopinotti" title="Twitter Profile" target="_blank">
+            <Icon name="fa6-brands:twitter" size="30" />
+          </a>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button
+          class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-600"
+          @click="menuOpen = !menuOpen"
+          aria-label="Toggle menu"
+        >
+          <Icon :name="menuOpen ? 'heroicons:x-mark' : 'heroicons:bars-3'" size="30" />
+        </button>
+      </div>
     </div>
+
+    <!-- Mobile menu -->
+    <transition name="menu">
+      <div v-show="menuOpen" class="md:hidden border-t border-gray-100 bg-white px-4 py-3 flex flex-col gap-1">
+        <NuxtLink class="mobile-link" to="/presentations" @click="menuOpen = false">
+          <Icon name="heroicons:presentation-chart-line" class="w-4 h-4" />
+          Presentations
+        </NuxtLink>
+        <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2 mt-2 mb-1">Tools</div>
+        <NuxtLink class="mobile-link" to="/tools/device-battery-life-estimator" @click="menuOpen = false">
+          <Icon name="fa6-solid:battery-full" class="w-4 h-4 text-green-500" />
+          Battery Life Estimator
+        </NuxtLink>
+        <NuxtLink class="mobile-link" to="/tools/base64" @click="menuOpen = false">
+          <Icon name="fa6-solid:code" class="w-4 h-4 text-gray-700" />
+          Base64 Encoder/Decoder
+        </NuxtLink>
+        <NuxtLink class="mobile-link" to="/tools/document-generator" @click="menuOpen = false">
+          <Icon name="fa6-regular:address-card" class="w-4 h-4 text-blue-500" />
+          Document Generator
+        </NuxtLink>
+
+        <!-- Social icons (mobile) -->
+        <div class="flex items-center justify-center gap-3 px-2 pt-3 mt-2 border-t border-gray-100">
+          <a class="social-icon text-[#1E1E1E]" href="https://github.com/danilopinotti" title="Github" target="_blank">
+            <Icon name="fa6-brands:github" size="36" />
+          </a>
+          <a class="social-icon text-[#0E76A8]" href="https://www.linkedin.com/in/danilopinotti/" title="Linkedin" target="_blank">
+            <Icon name="fa6-brands:linkedin" size="36" />
+          </a>
+          <a class="social-icon text-[#00ACEE]" href="https://twitter.com/danilopinotti" title="Twitter" target="_blank">
+            <Icon name="fa6-brands:twitter" size="36" />
+          </a>
+        </div>
+      </div>
+    </transition>
   </header>
 </template>
 
 <script setup>
+const menuOpen = ref(false)
+const scrolled = ref(false)
+
+const closeDropdown = () => {
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur()
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', () => {
+    scrolled.value = window.scrollY > 8
+  })
+})
 </script>
 
 <style scoped>
 @reference "tailwindcss";
 
-a.router-link-active:not([href='/']) {
-  @apply bg-gray-100;
+.nav-link {
+  @apply flex items-center gap-1.5 px-3 py-2 rounded-lg text-lg font-semibold text-gray-600
+    hover:text-sky-700 hover:bg-sky-50 transition-colors duration-150;
+}
+
+.nav-link.router-link-active:not([href='/']) {
+  @apply text-sky-700 bg-sky-50;
+}
+
+.tool-link {
+  @apply flex items-center justify-between w-full rounded-lg px-3 py-2 hover:bg-gray-50 transition-colors duration-150;
+}
+
+.mobile-link {
+  @apply flex items-center gap-2 px-3 py-2.5 rounded-lg text-lg font-semibold text-gray-600
+    hover:text-sky-700 hover:bg-sky-50 transition-colors duration-150;
+}
+
+.mobile-link.router-link-active:not([href='/']) {
+  @apply text-sky-700 bg-sky-50;
+}
+
+.social-icon {
+  @apply p-2 rounded-lg hover:bg-gray-100 transition-all duration-150 hover:scale-110 flex items-center;
+}
+
+.menu-enter-active,
+.menu-leave-active {
+  transition: all 0.2s ease;
+}
+
+.menu-enter-from,
+.menu-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
 }
 </style>

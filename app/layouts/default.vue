@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white text-gray-800" data-theme="light">
     <SharedLayoutHeader />
-    <div>
+    <div class="pt-3">
       <slot />
     </div>
     <SharedLayoutFooter />

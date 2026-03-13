@@ -59,14 +59,14 @@ const slug = route.params.slug
 const { formatDate } = useFormatDate()
 
 const { data: presentation } = await useAsyncData(`presentation-${slug}`, () =>
-  queryContent(`/presentations/${slug}`).findOne()
+  queryCollection('presentations').path(`/presentations/${slug}`).first()
 )
 
 const { data: surround } = await useAsyncData(`presentation-surround-${slug}`, () =>
-  queryContent('/presentations')
-    .only(['title', '_path'])
-    .sort({ publishedAt: 1 })
-    .findSurround(`/presentations/${slug}`)
+  queryCollectionItemSurroundings('presentations', `/presentations/${slug}`, {
+    before: 1,
+    after: 1,
+  })
 )
 
 useHead(() => {

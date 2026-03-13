@@ -14,13 +14,13 @@
       Presentations
     </h1>
     <div class="mt-0 md:mt-8 grid grid-cols-1 md:grid-cols-3 gap-3">
-      <div v-for="presentation in presentations" :key="presentation._path"
+      <div v-for="presentation in presentations" :key="presentation.path"
            class="mockup-window border border-base-300">
         <span class="absolute float w-full top-4 text-center font-bold text-gray-600">
           {{ truncateText(presentation.title) }}
         </span>
         <div class="flex flex-col justify-center px-4 border-t py-8 border-base-300">
-          <NuxtLink :to="`/presentations/${getSlug(presentation._path)}`">
+          <NuxtLink :to="`/presentations/${getSlug(presentation.path)}`">
             <span class="text-2xl font-bold text-gray-600 hover:text-blue-700 title-font">
               {{ presentation.title }}
             </span>
@@ -43,10 +43,10 @@
 const { formatDate } = useFormatDate()
 
 const { data: presentations } = await useAsyncData('presentations', () =>
-  queryContent('/presentations')
-    .only(['title', 'description', '_path', 'author', 'link', 'embed_link', 'publishedAt'])
-    .sort({ publishedAt: -1 })
-    .find()
+  queryCollection('presentations')
+    .select('title', 'description', 'path', 'author', 'link', 'embed_link', 'publishedAt')
+    .order('publishedAt', 'DESC')
+    .all()
 )
 
 function getSlug(path) {

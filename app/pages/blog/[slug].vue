@@ -28,14 +28,14 @@ const slug = route.params.slug
 const { formatDate } = useFormatDate()
 
 const { data: article } = await useAsyncData(`article-${slug}`, () =>
-  queryContent(`/articles/${slug}`).findOne()
+  queryCollection('articles').path(`/articles/${slug}`).first()
 )
 
 const { data: surround } = await useAsyncData(`article-surround-${slug}`, () =>
-  queryContent('/articles')
-    .only(['title', '_path'])
-    .sort({ publishedAt: 1 })
-    .findSurround(`/articles/${slug}`)
+  queryCollectionItemSurroundings('articles', `/articles/${slug}`, {
+    before: 1,
+    after: 1,
+  })
 )
 
 useHead(() => {

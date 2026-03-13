@@ -36,8 +36,8 @@ const props = defineProps({
 })
 
 function itemPath(item) {
-  if (!item?._path) return ''
-  const slug = item._path.split('/').pop()
+  if (!item?.path) return ''
+  const slug = item.path.split('/').pop()
   return `${props.routePrefix}/${slug}`
 }
 </script>

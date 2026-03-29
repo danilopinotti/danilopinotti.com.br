@@ -128,7 +128,7 @@
         <p>
           This was useful for you? Do you have a suggestion? Please, consider submit a PR on
           <a class="link" target="_blank"
-             href="https://github.com/danilopinotti/danilopinotti.com.br/blob/master/components/Tools/DocumentGenerator.vue">
+             href="https://github.com/danilopinotti/danilopinotti.com.br/blob/master/app/components/Tools/DocumentGenerator.vue">
             this project on GitHub
             <Icon name="fa6-brands:github" />
           </a>

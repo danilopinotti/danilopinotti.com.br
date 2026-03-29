@@ -95,7 +95,7 @@ useHead(() => {
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
           name: 'Blog - Danilo Pinotti',
-          description: 'Artigos sobre tecnologia, programacao, desenvolvimento web, Laravel, Vue.js, Docker, Git e mais.',
+          description: 'Articles on backend engineering, software architecture, distributed systems, observability, Laravel, Docker, Git, and developer workflows.',
           url: siteUrl,
           mainEntity: {
             '@type': 'ItemList',

@@ -1,7 +1,7 @@
 <template>
   <BlogAuthorWrapper
     name="Danilo Pinotti"
-    bio="Desenvolvedor Web Full-Stack Laravel/VueJs"
+    bio="Senior Backend Developer and Software Architect"
     img="/images/authors/danilo-pinotti.png"
   />
 </template>

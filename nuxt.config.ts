@@ -13,14 +13,14 @@ export default defineNuxtConfig({
         {name: 'viewport', content: 'width=device-width, initial-scale=1'},
         {
           name: 'description',
-          content: 'Este é meu site sobre tecnologia, programação e outros assuntos. Sou desenvolvedor Web Fullstack Laravel/VueJs/TailwindCSS, desenvolvedor IoT e eterno estudante.',
+          content: 'Senior Backend Developer and Software Architect sharing articles, talks, and developer tools on distributed systems, payments, observability, and web engineering.',
         },
         {name: 'format-detection', content: 'telephone=no'},
         {name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'},
         {name: 'author', content: 'Danilo Pinotti'},
         {
           name: 'keywords',
-          content: 'blog, danilopinotti, dev, web development, laravel, performance, git, aws, tailwindcss, vue.js, docker, iot',
+          content: 'Danilo Pinotti, senior backend developer, software architect, distributed systems, payments, observability, web engineering, Laravel, Node.js, TypeScript, Docker, PostgreSQL',
         },
         {name: 'generator', content: 'Nuxt'},
         {property: 'og:site_name', content: 'Danilo Pinotti'},
@@ -28,7 +28,7 @@ export default defineNuxtConfig({
         {property: 'og:title', content: 'Danilo Pinotti'},
         {
           property: 'og:description',
-          content: 'Este é meu site sobre tecnologia, programação e outros assuntos. Sou desenvolvedor Web Full-Stack Laravel/VueJs/TailwindCSS, desenvolvedor IoT e eterno estudante.',
+          content: 'Senior Backend Developer and Software Architect sharing articles, talks, and developer tools on distributed systems, payments, observability, and web engineering.',
         },
         {property: 'og:image:width', content: '512'},
         {property: 'og:image:height', content: '512'},
@@ -39,7 +39,7 @@ export default defineNuxtConfig({
         {name: 'twitter:title', content: 'Danilo Pinotti'},
         {
           name: 'twitter:description',
-          content: 'Este é meu site sobre tecnologia, programação e outros assuntos. Sou desenvolvedor Web Full-Stack Laravel/VueJs/TailwindCSS, desenvolvedor IoT e eterno estudante.',
+          content: 'Senior Backend Developer and Software Architect sharing articles, talks, and developer tools on distributed systems, payments, observability, and web engineering.',
         },
       ],
       link: [
@@ -87,4 +87,3 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2025-04-01',
 })
-

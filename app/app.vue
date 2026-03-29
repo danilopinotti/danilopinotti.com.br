@@ -24,7 +24,7 @@ useHead({
             '@id': `${siteUrl}/#website`,
             url: siteUrl,
             name: 'Danilo Pinotti',
-            description: 'Site sobre tecnologia, programacao e ferramentas para desenvolvedores. Blog, apresentacoes tecnicas e ferramentas online gratuitas.',
+            description: 'Personal website of Danilo Pinotti with articles, talks, and developer tools focused on backend engineering, software architecture, and distributed systems.',
             inLanguage: 'pt-BR',
             publisher: {
               '@id': `${siteUrl}/#person`,
@@ -35,16 +35,17 @@ useHead({
             '@id': `${siteUrl}/#person`,
             name: 'Danilo Pinotti',
             url: siteUrl,
-            jobTitle: 'Desenvolvedor Web Full-Stack',
-            description: 'Desenvolvedor Web Fullstack Laravel/VueJs/TailwindCSS, desenvolvedor IoT e eterno estudante.',
+            jobTitle: 'Senior Backend Developer and Software Architect',
+            description: 'Senior Backend Developer and Software Architect with more than 10 years of experience in distributed systems, payments, observability, and high-reliability web applications.',
             sameAs: [
               'https://github.com/danilopinotti',
               'https://www.linkedin.com/in/danilopinotti/',
               'https://twitter.com/danilopinotti',
             ],
             knowsAbout: [
-              'Laravel', 'Vue.js', 'TailwindCSS', 'Docker', 'Git',
-              'PHP', 'JavaScript', 'TypeScript', 'IoT', 'AWS',
+              'Backend Engineering', 'Software Architecture', 'Distributed Systems', 'Payment Integrations', 'Observability',
+              'Laravel', 'Node.js', 'NestJS', 'PHP', 'TypeScript',
+              'PostgreSQL', 'Redis', 'Docker', 'AWS',
             ],
           },
         ],
@@ -53,4 +54,3 @@ useHead({
   ],
 })
 </script>
-

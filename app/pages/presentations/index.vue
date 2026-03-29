@@ -49,13 +49,13 @@
 const { formatDate } = useFormatDate()
 const { url: siteUrl } = useSiteConfig()
 const pageUrl = `${siteUrl}/presentations`
-const description = 'Slides e apresentacoes tecnicas sobre desenvolvimento de software, Laravel, Vue.js, Git, testes automatizados e mais.'
+const description = 'Technical talks and presentations on backend engineering, software architecture, distributed systems, Laravel, Git, and automated testing.'
 
 useHead({
   title: 'Presentations',
   meta: [
     { name: 'description', content: description },
-    { name: 'keywords', content: 'apresentacoes, slides, laravel, vue.js, git, testes automatizados, desenvolvimento software, presentations' },
+    { name: 'keywords', content: 'Danilo Pinotti presentations, backend engineering talks, software architecture talks, distributed systems, Laravel, Git, automated testing, developer presentations' },
     { property: 'og:title', content: 'Presentations | Danilo Pinotti' },
     { property: 'og:description', content: description },
     { property: 'og:url', content: pageUrl },

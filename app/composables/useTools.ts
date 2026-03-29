@@ -35,5 +35,18 @@ export const useTools = (): Tool[] => [
     icon: 'heroicons:finger-print',
     iconClass: 'text-purple-500',
   },
+  {
+    label: 'JSON Formatter/Validator',
+    description: 'Format, validate and minify JSON data',
+    to: '/tools/json-formatter-validator',
+    icon: 'heroicons:code-bracket-square',
+    iconClass: 'text-amber-500',
+  },
+  {
+    label: 'JWT Decoder',
+    description: 'Decode JWT header and payload instantly',
+    to: '/tools/jwt-decoder',
+    icon: 'heroicons:key',
+    iconClass: 'text-red-500',
+  },
 ]
-

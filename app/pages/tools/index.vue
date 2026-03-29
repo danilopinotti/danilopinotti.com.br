@@ -33,13 +33,13 @@
 const tools = useTools()
 const { url: siteUrl } = useSiteConfig()
 const pageUrl = `${siteUrl}/tools`
-const description = 'Ferramentas online gratuitas para desenvolvedores: gerador de UUID, codificador Base64, gerador de CPF/CNPJ e estimador de bateria para IoT.'
+const description = 'Ferramentas online gratuitas para desenvolvedores: JSON formatter, JWT decoder, gerador de UUID, codificador Base64, gerador de CPF/CNPJ e estimador de bateria para IoT.'
 
 useHead({
   title: 'Tools',
   meta: [
     { name: 'description', content: description },
-    { name: 'keywords', content: 'ferramentas desenvolvedores, developer tools, uuid generator, base64, cpf generator, cnpj generator, battery estimator, iot' },
+    { name: 'keywords', content: 'ferramentas desenvolvedores, developer tools, json formatter, jwt decoder, uuid generator, base64, cpf generator, cnpj generator, battery estimator, iot' },
     { property: 'og:title', content: 'Tools | Danilo Pinotti' },
     { property: 'og:description', content: description },
     { property: 'og:url', content: pageUrl },
@@ -68,4 +68,3 @@ useHead({
   ],
 })
 </script>
-

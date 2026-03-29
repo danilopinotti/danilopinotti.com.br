@@ -57,6 +57,7 @@
 const route = useRoute()
 const slug = route.params.slug
 const { formatDate } = useFormatDate()
+const { url: siteUrl } = useSiteConfig()
 
 const { data: presentation } = await useAsyncData(`presentation-${slug}`, () =>
   queryCollection('presentations').path(`/presentations/${slug}`).first()
@@ -72,7 +73,6 @@ const { data: surround } = await useAsyncData(`presentation-surround-${slug}`, (
 useHead(() => {
   if (!presentation.value) return {}
 
-  const { url: siteUrl } = useSiteConfig()
   const pageUrl = `${siteUrl}/presentations/${slug}`
 
   const meta = [

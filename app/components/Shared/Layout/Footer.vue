@@ -13,6 +13,9 @@
     </nav>
     <nav>
       <h6 class="footer-title">About</h6>
+      <NuxtLink to="/about" class="link link-hover">
+        About Me
+      </NuxtLink>
       <a class="link link-hover"
          href="mailto:%63%6f%6e%74%61%74%6f%40%64%61%6e%69%6c%6f%70%69%6e%6f%74%74%69%2e%63%6f%6d%2e%62%72">Contact</a>
       <a class="link link-hover" href="https://github.com/danilopinotti/danilopinotti.com.br">

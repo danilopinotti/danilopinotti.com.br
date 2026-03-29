@@ -97,10 +97,37 @@ useHead(() => {
     meta.push({ name: 'keywords', content: presentation.value.keywords })
   }
 
+  const jsonLd = {
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'PresentationDigitalDocument',
+      name: presentation.value.title,
+      description: presentation.value.description,
+      datePublished: presentation.value.publishedAt,
+      url: pageUrl,
+      author: {
+        '@type': 'Person',
+        name: presentation.value.author?.name || 'Danilo Pinotti',
+        url: siteUrl,
+      },
+      publisher: {
+        '@type': 'Person',
+        name: 'Danilo Pinotti',
+        url: siteUrl,
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': pageUrl,
+      },
+    }),
+  }
+
   return {
     title: presentation.value.title,
     meta,
     link: [{ rel: 'canonical', href: pageUrl }],
+    script: [jsonLd],
   }
 })
 </script>

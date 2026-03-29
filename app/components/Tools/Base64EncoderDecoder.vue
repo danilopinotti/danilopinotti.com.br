@@ -46,20 +46,6 @@
 </template>
 
 <script setup>
-useHead({
-  title: 'Danilo Pinotti - Base64 Encoder/Decoder',
-  meta: [
-    {
-      name: 'keywords',
-      content: 'base64,base64 encode, base64 decode',
-    },
-    {
-      name: 'description',
-      content: 'Simply Encode and Decode Base64 strings.',
-    },
-  ],
-})
-
 const inputPlaceholder = ref('Input Data')
 const textInput = ref('')
 const textOutput = ref('')

@@ -131,14 +131,6 @@
 <script setup>
 import { v4 as uuidv4, v5 as uuidv5, v7 as uuidv7 } from 'uuid'
 
-useHead({
-  title: 'Danilo Pinotti - UUID Generator',
-  meta: [
-    { name: 'keywords', content: 'uuid, uuid generator, uuid v4, uuid v5, uuid v7' },
-    { name: 'description', content: 'Generate UUIDs in versions 4, 5 and 7 and understand the differences between them.' },
-  ],
-})
-
 // V4
 const v4Result = ref(uuidv4())
 function generateV4() {

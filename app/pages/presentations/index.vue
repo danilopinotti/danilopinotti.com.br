@@ -47,16 +47,20 @@
 
 <script setup>
 const { formatDate } = useFormatDate()
+const siteUrl = 'https://danilopinotti.com.br'
+const pageUrl = `${siteUrl}/presentations`
+const description = 'Slides e apresentacoes tecnicas sobre desenvolvimento de software, Laravel, Vue.js, Git, testes automatizados e mais.'
 
 useHead({
   title: 'Presentations',
   meta: [
-    { name: 'description', content: 'Slides e apresentações técnicas sobre desenvolvimento de software, Laravel, Vue.js, Git, testes automatizados e mais.' },
+    { name: 'description', content: description },
+    { name: 'keywords', content: 'apresentacoes, slides, laravel, vue.js, git, testes automatizados, desenvolvimento software, presentations' },
     { property: 'og:title', content: 'Presentations | Danilo Pinotti' },
-    { property: 'og:description', content: 'Slides e apresentações técnicas sobre desenvolvimento de software, Laravel, Vue.js, Git, testes automatizados e mais.' },
-    { property: 'og:url', content: 'https://danilopinotti.com.br/presentations' },
+    { property: 'og:description', content: description },
+    { property: 'og:url', content: pageUrl },
   ],
-  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br/presentations' }],
+  link: [{ rel: 'canonical', href: pageUrl }],
 })
 
 const { data: presentations } = await useAsyncData('presentations', () =>
@@ -65,6 +69,35 @@ const { data: presentations } = await useAsyncData('presentations', () =>
     .order('publishedAt', 'DESC')
     .all()
 )
+
+// JSON-LD for presentations listing (added after data is loaded)
+useHead(() => {
+  if (!presentations.value?.length) return {}
+
+  return {
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Presentations',
+          description,
+          url: pageUrl,
+          mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: presentations.value.map((p, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: p.title,
+              url: `${siteUrl}/presentations/${getSlug(p.path)}`,
+            })),
+          },
+        }),
+      },
+    ],
+  }
+})
 
 function getSlug(path) {
   return path?.split('/').pop() || ''

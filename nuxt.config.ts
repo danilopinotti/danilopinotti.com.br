@@ -16,12 +16,13 @@ export default defineNuxtConfig({
           content: 'Este é meu site sobre tecnologia, programação e outros assuntos. Sou desenvolvedor Web Fullstack Laravel/VueJs/TailwindCSS, desenvolvedor IoT e eterno estudante.',
         },
         {name: 'format-detection', content: 'telephone=no'},
-        {name: 'robots', content: 'index, follow'},
+        {name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'},
         {name: 'author', content: 'Danilo Pinotti'},
         {
           name: 'keywords',
-          content: 'blog, danilopinotti, dev, web development, laravel, performance, git, aws, tailwindcss',
+          content: 'blog, danilopinotti, dev, web development, laravel, performance, git, aws, tailwindcss, vue.js, docker, iot',
         },
+        {name: 'generator', content: 'Nuxt'},
         {property: 'og:site_name', content: 'Danilo Pinotti'},
         {property: 'og:type', content: 'website'},
         {property: 'og:url', content: 'https://danilopinotti.com.br'},
@@ -36,6 +37,7 @@ export default defineNuxtConfig({
         {property: 'og:locale', content: 'pt_BR'},
         {name: 'twitter:card', content: 'summary_large_image'},
         {name: 'twitter:site', content: '@danilopinotti'},
+        {name: 'twitter:creator', content: '@danilopinotti'},
         {name: 'twitter:title', content: 'Danilo Pinotti'},
         {
           name: 'twitter:description',

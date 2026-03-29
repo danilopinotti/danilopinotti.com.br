@@ -66,12 +66,13 @@
 
 <script setup>
 const { formatDate } = useFormatDate()
+const siteUrl = 'https://danilopinotti.com.br'
 
 useHead({
   title: 'Blog',
-  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br' }],
+  link: [{ rel: 'canonical', href: siteUrl }],
   meta: [
-    { property: 'og:url', content: 'https://danilopinotti.com.br' },
+    { property: 'og:url', content: siteUrl },
   ],
 })
 
@@ -81,6 +82,35 @@ const { data: articles } = await useAsyncData('articles', () =>
     .order('publishedAt', 'DESC')
     .all()
 )
+
+// JSON-LD for blog listing (CollectionPage + ItemList)
+useHead(() => {
+  if (!articles.value?.length) return {}
+
+  return {
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Blog - Danilo Pinotti',
+          description: 'Artigos sobre tecnologia, programacao, desenvolvimento web, Laravel, Vue.js, Docker, Git e mais.',
+          url: siteUrl,
+          mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: articles.value.map((article, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              url: `${siteUrl}/blog/${getSlug(article.path)}`,
+              name: article.title,
+            })),
+          },
+        }),
+      },
+    ],
+  }
+})
 
 function getSlug(path) {
   return path?.split('/').pop() || ''

@@ -253,20 +253,6 @@
 </template>
 
 <script setup>
-useHead({
-  title: 'Danilo Pinotti - Battery Life Estimator',
-  meta: [
-    {
-      name: 'keywords',
-      content: 'iot, esp32, battery life, battery life estimator, 18650, power consumption, optimization, low power',
-    },
-    {
-      name: 'description',
-      content: 'Calculate an estimate of the battery life time of IoT devices.',
-    },
-  ],
-})
-
 const batteryCapacityMAh = ref(2500)
 const batterySelfDischargingPercentageYear = ref(0)
 const activeAvgCurrentMa = ref(100)

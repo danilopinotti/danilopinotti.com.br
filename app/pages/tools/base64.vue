@@ -14,16 +14,45 @@
 
 <script setup>
 const tool = useTools().find(t => t.to === '/tools/base64')
+const siteUrl = 'https://danilopinotti.com.br'
+const pageUrl = `${siteUrl}/tools/base64`
+const description = 'Encode and decode strings to and from Base64 format online, directly in your browser. Free Base64 encoder and decoder tool.'
 
 useHead({
   title: 'Base64 Encoder/Decoder',
   meta: [
-    { name: 'description', content: 'Encode and decode strings to and from Base64 format online, directly in your browser.' },
+    { name: 'description', content: description },
+    { name: 'keywords', content: 'base64, base64 encode, base64 decode, online base64, base64 converter, free base64 tool' },
     { property: 'og:title', content: 'Base64 Encoder/Decoder | Danilo Pinotti' },
-    { property: 'og:description', content: 'Encode and decode strings to and from Base64 format online, directly in your browser.' },
-    { property: 'og:url', content: 'https://danilopinotti.com.br/tools/base64' },
+    { property: 'og:description', content: description },
+    { property: 'og:url', content: pageUrl },
+    { property: 'og:type', content: 'website' },
   ],
-  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br/tools/base64' }],
+  link: [{ rel: 'canonical', href: pageUrl }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: 'Base64 Encoder/Decoder',
+        description,
+        url: pageUrl,
+        applicationCategory: 'DeveloperApplication',
+        operatingSystem: 'All',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'BRL',
+        },
+        author: {
+          '@type': 'Person',
+          name: 'Danilo Pinotti',
+          url: siteUrl,
+        },
+      }),
+    },
+  ],
 })
 </script>
 

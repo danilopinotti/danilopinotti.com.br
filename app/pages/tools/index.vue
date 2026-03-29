@@ -31,16 +31,41 @@
 
 <script setup>
 const tools = useTools()
+const siteUrl = 'https://danilopinotti.com.br'
+const pageUrl = `${siteUrl}/tools`
+const description = 'Ferramentas online gratuitas para desenvolvedores: gerador de UUID, codificador Base64, gerador de CPF/CNPJ e estimador de bateria para IoT.'
 
 useHead({
   title: 'Tools',
   meta: [
-    { name: 'description', content: 'Ferramentas úteis para desenvolvedores: gerador de UUID, codificador Base64, gerador de CPF/CNPJ e estimador de bateria para IoT.' },
+    { name: 'description', content: description },
+    { name: 'keywords', content: 'ferramentas desenvolvedores, developer tools, uuid generator, base64, cpf generator, cnpj generator, battery estimator, iot' },
     { property: 'og:title', content: 'Tools | Danilo Pinotti' },
-    { property: 'og:description', content: 'Ferramentas úteis para desenvolvedores: gerador de UUID, codificador Base64, gerador de CPF/CNPJ e estimador de bateria para IoT.' },
-    { property: 'og:url', content: 'https://danilopinotti.com.br/tools' },
+    { property: 'og:description', content: description },
+    { property: 'og:url', content: pageUrl },
   ],
-  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br/tools' }],
+  link: [{ rel: 'canonical', href: pageUrl }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Developer Tools',
+        description,
+        url: pageUrl,
+        mainEntity: {
+          '@type': 'ItemList',
+          itemListElement: tools.map((tool, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name: tool.label,
+            url: `${siteUrl}${tool.to}`,
+          })),
+        },
+      }),
+    },
+  ],
 })
 </script>
 

@@ -225,14 +225,6 @@ const DocUtils = {
   }
 }
 
-useHead({
-  title: 'Danilo Pinotti - Document Generator',
-  meta: [
-    { name: 'keywords', content: 'cpf,cnpj,document,brasil,brazil' },
-    { name: 'description', content: 'Generate and Validate Brazilian documents easily.' },
-  ],
-})
-
 const cpf = reactive({
   generatedValue: '',
   generatedMasked: '',

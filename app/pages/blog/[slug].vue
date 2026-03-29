@@ -84,6 +84,7 @@ useHead(() => {
       description: article.value.description,
       image,
       datePublished: article.value.publishedAt,
+      inLanguage: 'pt-BR',
       author: {
         '@type': 'Person',
         name: article.value.author?.name || 'Danilo Pinotti',
@@ -98,6 +99,11 @@ useHead(() => {
         '@type': 'WebPage',
         '@id': pageUrl,
       },
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['article h1', 'article h2', 'article p'],
+      },
+      isAccessibleForFree: true,
     }),
   }
 

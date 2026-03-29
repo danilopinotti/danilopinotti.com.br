@@ -14,16 +14,45 @@
 
 <script setup>
 const tool = useTools().find(t => t.to === '/tools/document-generator')
+const siteUrl = 'https://danilopinotti.com.br'
+const pageUrl = `${siteUrl}/tools/document-generator`
+const description = 'Gere CPF e CNPJ validos para testes de software de forma rapida e simples. Ferramenta online gratuita para gerar e validar documentos brasileiros.'
 
 useHead({
   title: 'Document Generator (CPF and CNPJ)',
   meta: [
-    { name: 'description', content: 'Gere CPF e CNPJ válidos para testes de software de forma rápida e simples.' },
+    { name: 'description', content: description },
+    { name: 'keywords', content: 'cpf, cnpj, gerador cpf, gerador cnpj, validar cpf, validar cnpj, documento brasileiro, cpf generator, cnpj generator' },
     { property: 'og:title', content: 'Document Generator (CPF and CNPJ) | Danilo Pinotti' },
-    { property: 'og:description', content: 'Gere CPF e CNPJ válidos para testes de software de forma rápida e simples.' },
-    { property: 'og:url', content: 'https://danilopinotti.com.br/tools/document-generator' },
+    { property: 'og:description', content: description },
+    { property: 'og:url', content: pageUrl },
+    { property: 'og:type', content: 'website' },
   ],
-  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br/tools/document-generator' }],
+  link: [{ rel: 'canonical', href: pageUrl }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: 'Document Generator (CPF and CNPJ)',
+        description,
+        url: pageUrl,
+        applicationCategory: 'DeveloperApplication',
+        operatingSystem: 'All',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'BRL',
+        },
+        author: {
+          '@type': 'Person',
+          name: 'Danilo Pinotti',
+          url: siteUrl,
+        },
+      }),
+    },
+  ],
 })
 </script>
 

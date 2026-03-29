@@ -72,7 +72,7 @@ const { data: surround } = await useAsyncData(`presentation-surround-${slug}`, (
 useHead(() => {
   if (!presentation.value) return {}
 
-  const siteUrl = 'https://danilopinotti.com.br'
+  const { url: siteUrl } = useSiteConfig()
   const pageUrl = `${siteUrl}/presentations/${slug}`
 
   const meta = [

@@ -26,7 +26,7 @@
 const route = useRoute()
 const slug = route.params.slug
 const { formatDate } = useFormatDate()
-const siteUrl = 'https://danilopinotti.com.br'
+const { url: siteUrl } = useSiteConfig()
 
 const { data: article } = await useAsyncData(`article-${slug}`, () =>
   queryCollection('articles').path(`/articles/${slug}`).first()

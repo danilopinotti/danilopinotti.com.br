@@ -14,7 +14,7 @@
 
 <script setup>
 const tool = useTools().find(t => t.to === '/tools/base64')
-const siteUrl = 'https://danilopinotti.com.br'
+const { url: siteUrl } = useSiteConfig()
 const pageUrl = `${siteUrl}/tools/base64`
 const description = 'Encode and decode strings to and from Base64 format online, directly in your browser. Free Base64 encoder and decoder tool.'
 

@@ -66,7 +66,7 @@
 
 <script setup>
 const { formatDate } = useFormatDate()
-const siteUrl = 'https://danilopinotti.com.br'
+const { url: siteUrl } = useSiteConfig()
 
 useHead({
   title: 'Blog',

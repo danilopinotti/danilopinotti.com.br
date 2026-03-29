@@ -14,7 +14,7 @@
 
 <script setup>
 const tool = useTools().find(t => t.to === '/tools/document-generator')
-const siteUrl = 'https://danilopinotti.com.br'
+const { url: siteUrl } = useSiteConfig()
 const pageUrl = `${siteUrl}/tools/document-generator`
 const description = 'Gere CPF e CNPJ validos para testes de software de forma rapida e simples. Ferramenta online gratuita para gerar e validar documentos brasileiros.'
 

@@ -47,7 +47,7 @@
 
 <script setup>
 const { formatDate } = useFormatDate()
-const siteUrl = 'https://danilopinotti.com.br'
+const { url: siteUrl } = useSiteConfig()
 const pageUrl = `${siteUrl}/presentations`
 const description = 'Slides e apresentacoes tecnicas sobre desenvolvimento de software, Laravel, Vue.js, Git, testes automatizados e mais.'
 

@@ -25,13 +25,11 @@ export default defineNuxtConfig({
         {name: 'generator', content: 'Nuxt'},
         {property: 'og:site_name', content: 'Danilo Pinotti'},
         {property: 'og:type', content: 'website'},
-        {property: 'og:url', content: 'https://danilopinotti.com.br'},
         {property: 'og:title', content: 'Danilo Pinotti'},
         {
           property: 'og:description',
           content: 'Este é meu site sobre tecnologia, programação e outros assuntos. Sou desenvolvedor Web Full-Stack Laravel/VueJs/TailwindCSS, desenvolvedor IoT e eterno estudante.',
         },
-        {property: 'og:image', content: 'https://danilopinotti.com.br/android-chrome-512x512.png'},
         {property: 'og:image:width', content: '512'},
         {property: 'og:image:height', content: '512'},
         {property: 'og:locale', content: 'pt_BR'},
@@ -43,7 +41,6 @@ export default defineNuxtConfig({
           name: 'twitter:description',
           content: 'Este é meu site sobre tecnologia, programação e outros assuntos. Sou desenvolvedor Web Full-Stack Laravel/VueJs/TailwindCSS, desenvolvedor IoT e eterno estudante.',
         },
-        {name: 'twitter:image', content: 'https://danilopinotti.com.br/android-chrome-512x512.png'},
       ],
       link: [
         {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
@@ -81,7 +78,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: 'https://danilopinotti.com.br',
+    url: process.env.NUXT_SITE_URL || 'https://danilopinotti.com.br',
   },
 
   icon: {

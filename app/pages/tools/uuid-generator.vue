@@ -12,7 +12,7 @@
 
 <script setup>
 const tool = useTools().find(t => t.to === '/tools/uuid-generator')
-const siteUrl = 'https://danilopinotti.com.br'
+const { url: siteUrl } = useSiteConfig()
 const pageUrl = `${siteUrl}/tools/uuid-generator`
 const description = 'Generate UUIDs in versions 4, 5 and 7 instantly, directly in your browser. Free online UUID generator tool.'
 

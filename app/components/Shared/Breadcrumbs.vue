@@ -28,7 +28,7 @@ const props = defineProps({
   }
 })
 
-const siteUrl = 'https://danilopinotti.com.br'
+const { url: siteUrl } = useSiteConfig()
 
 const breadcrumbJsonLd = computed(() => ({
   '@context': 'https://schema.org',

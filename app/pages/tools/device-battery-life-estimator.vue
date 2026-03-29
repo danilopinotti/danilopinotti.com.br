@@ -14,7 +14,7 @@
 
 <script setup>
 const tool = useTools().find(t => t.to === '/tools/device-battery-life-estimator')
-const siteUrl = 'https://danilopinotti.com.br'
+const { url: siteUrl } = useSiteConfig()
 const pageUrl = `${siteUrl}/tools/device-battery-life-estimator`
 const description = 'Estimate the battery life of IoT devices based on capacity and consumption parameters. Free online battery life calculator for ESP32, Arduino and more.'
 

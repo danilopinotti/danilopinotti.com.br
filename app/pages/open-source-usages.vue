@@ -31,13 +31,16 @@
 </template>
 
 <script setup>
+const { url: siteUrl } = useSiteConfig()
+const pageUrl = `${siteUrl}/open-source-usages`
+
 useHead({
   title: 'Open Source Usages',
   meta: [
     { name: 'description', content: 'Open-source libraries and technologies used to build this website.' },
-    { property: 'og:url', content: 'https://danilopinotti.com.br/open-source-usages' },
+    { property: 'og:url', content: pageUrl },
   ],
-  link: [{ rel: 'canonical', href: 'https://danilopinotti.com.br/open-source-usages' }],
+  link: [{ rel: 'canonical', href: pageUrl }],
 })
 
 const technologies = [

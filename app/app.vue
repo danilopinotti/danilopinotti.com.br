@@ -5,7 +5,14 @@
 </template>
 
 <script setup>
+const { url: siteUrl } = useSiteConfig()
+
 useHead({
+  meta: [
+    { property: 'og:url', content: siteUrl },
+    { property: 'og:image', content: `${siteUrl}/android-chrome-512x512.png` },
+    { name: 'twitter:image', content: `${siteUrl}/android-chrome-512x512.png` },
+  ],
   script: [
     {
       type: 'application/ld+json',
@@ -14,20 +21,20 @@ useHead({
         '@graph': [
           {
             '@type': 'WebSite',
-            '@id': 'https://danilopinotti.com.br/#website',
-            url: 'https://danilopinotti.com.br',
+            '@id': `${siteUrl}/#website`,
+            url: siteUrl,
             name: 'Danilo Pinotti',
             description: 'Site sobre tecnologia, programacao e ferramentas para desenvolvedores. Blog, apresentacoes tecnicas e ferramentas online gratuitas.',
             inLanguage: 'pt-BR',
             publisher: {
-              '@id': 'https://danilopinotti.com.br/#person',
+              '@id': `${siteUrl}/#person`,
             },
           },
           {
             '@type': 'Person',
-            '@id': 'https://danilopinotti.com.br/#person',
+            '@id': `${siteUrl}/#person`,
             name: 'Danilo Pinotti',
-            url: 'https://danilopinotti.com.br',
+            url: siteUrl,
             jobTitle: 'Desenvolvedor Web Full-Stack',
             description: 'Desenvolvedor Web Fullstack Laravel/VueJs/TailwindCSS, desenvolvedor IoT e eterno estudante.',
             sameAs: [

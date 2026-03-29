@@ -31,7 +31,7 @@
 
 <script setup>
 const tools = useTools()
-const siteUrl = 'https://danilopinotti.com.br'
+const { url: siteUrl } = useSiteConfig()
 const pageUrl = `${siteUrl}/tools`
 const description = 'Ferramentas online gratuitas para desenvolvedores: gerador de UUID, codificador Base64, gerador de CPF/CNPJ e estimador de bateria para IoT.'
 

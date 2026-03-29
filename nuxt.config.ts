@@ -20,7 +20,7 @@ export default defineNuxtConfig({
         {name: 'author', content: 'Danilo Pinotti'},
         {
           name: 'keywords',
-          content: 'Danilo Pinotti, senior backend developer, software architect, distributed systems, payments, observability, web engineering, Laravel, Node.js, TypeScript, Docker, PostgreSQL',
+          content: 'Danilo Pinotti, senior backend developer, software architect, PHP, HyperF, distributed systems, microservices, payments, observability, web engineering, Laravel, Docker, PostgreSQL',
         },
         {name: 'generator', content: 'Nuxt'},
         {property: 'og:site_name', content: 'Danilo Pinotti'},

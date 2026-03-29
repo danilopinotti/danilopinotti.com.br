@@ -19,6 +19,15 @@
       <nav class="hidden md:flex items-center gap-1">
         <NuxtLink
           class="nav-link"
+          to="/about"
+          title="About Me"
+        >
+          <Icon name="heroicons:user-circle" class="w-5 h-5" />
+          About
+        </NuxtLink>
+
+        <NuxtLink
+          class="nav-link"
           to="/presentations"
           title="Presentations"
         >
@@ -78,6 +87,10 @@
     <!-- Mobile menu -->
     <transition name="menu">
       <div v-show="menuOpen" class="md:hidden border-t border-gray-100 bg-white px-4 py-3 flex flex-col gap-1">
+        <NuxtLink class="mobile-link" to="/about" @click="menuOpen = false">
+          <Icon name="heroicons:user-circle" class="w-4 h-4" />
+          About
+        </NuxtLink>
         <NuxtLink class="mobile-link" to="/presentations" @click="menuOpen = false">
           <Icon name="heroicons:presentation-chart-line" class="w-4 h-4" />
           Presentations

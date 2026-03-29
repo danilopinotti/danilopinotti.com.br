@@ -44,8 +44,8 @@ useHead({
             ],
             knowsAbout: [
               'Backend Engineering', 'Software Architecture', 'Distributed Systems', 'Payment Integrations', 'Observability',
-              'Laravel', 'Node.js', 'NestJS', 'PHP', 'TypeScript',
-              'PostgreSQL', 'Redis', 'Docker', 'AWS',
+              'Laravel', 'PHP', 'HyperF', 'PostgreSQL', 'Redis',
+              'Docker', 'AWS',
             ],
           },
         ],

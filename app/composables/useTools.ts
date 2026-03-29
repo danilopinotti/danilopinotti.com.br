@@ -36,6 +36,13 @@ export const useTools = (): Tool[] => [
     iconClass: 'text-purple-500',
   },
   {
+    label: 'JWT Decoder',
+    description: 'Decode JWT header and payload instantly',
+    to: '/tools/jwt-decoder',
+    icon: 'heroicons:key',
+    iconClass: 'text-red-500',
+  },
+  {
     label: 'JSON Formatter/Validator',
     description: 'Format, validate and minify JSON data',
     to: '/tools/json-formatter-validator',
@@ -43,10 +50,10 @@ export const useTools = (): Tool[] => [
     iconClass: 'text-amber-500',
   },
   {
-    label: 'JWT Decoder',
-    description: 'Decode JWT header and payload instantly',
-    to: '/tools/jwt-decoder',
-    icon: 'heroicons:key',
-    iconClass: 'text-red-500',
+    label: 'JSONPath Builder',
+    description: 'Build JSONPath expressions by clicking on JSON elements',
+    to: '/tools/jsonpath-builder',
+    icon: 'fa6-solid:route',
+    iconClass: 'text-sky-500',
   },
 ]

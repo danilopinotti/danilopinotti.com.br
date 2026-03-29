@@ -14,17 +14,21 @@
 const tool = useTools().find(t => t.to === '/tools/json-formatter-validator')
 const { url: siteUrl } = useSiteConfig()
 const pageUrl = `${siteUrl}/tools/json-formatter-validator`
-const description = 'Format, validate and minify JSON online, directly in your browser. Free JSON formatter and validator tool for developers.'
+const title = 'Online JSON Formatter, Validator & Minifier'
+const description = 'Format, validate and minify JSON online — free, private and entirely in your browser. Paste raw JSON, pretty-print with 2-space indentation, minify for transport or catch syntax errors instantly. No data is sent to any server.'
 
 useHead({
-  title: 'JSON Formatter/Validator',
+  title,
   meta: [
     { name: 'description', content: description },
-    { name: 'keywords', content: 'json formatter, json validator, json minifier, format json online, validate json, developer tool' },
-    { property: 'og:title', content: 'JSON Formatter/Validator | Danilo Pinotti' },
+    { name: 'keywords', content: 'json formatter, json validator, json minifier, format json online, validate json, pretty print json, json beautifier, json lint, json parser, json checker, developer tool, free json tool' },
+    { property: 'og:title', content: `${title} | Danilo Pinotti` },
     { property: 'og:description', content: description },
     { property: 'og:url', content: pageUrl },
     { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:title', content: `${title} | Danilo Pinotti` },
+    { name: 'twitter:description', content: description },
   ],
   link: [{ rel: 'canonical', href: pageUrl }],
   script: [
@@ -33,15 +37,23 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebApplication',
-        name: 'JSON Formatter/Validator',
+        name: title,
         description,
         url: pageUrl,
         applicationCategory: 'DeveloperApplication',
         operatingSystem: 'All',
+        inLanguage: 'en',
+        browserRequirements: 'Requires JavaScript',
+        featureList: [
+          'Format / pretty-print JSON with 2-space indentation',
+          'Minify JSON for compact transport',
+          'Real-time validation with inline error feedback',
+          'Works entirely in the browser — no server requests',
+        ],
         offers: {
           '@type': 'Offer',
           price: '0',
-          priceCurrency: 'BRL',
+          priceCurrency: 'USD',
         },
         author: {
           '@type': 'Person',

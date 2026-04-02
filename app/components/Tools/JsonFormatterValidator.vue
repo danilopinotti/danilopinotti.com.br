@@ -35,7 +35,7 @@
           </div>
 
           <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
-            <div class="flex flex-col gap-2">
+            <div class="flex h-full flex-col gap-2">
               <div class="flex items-center justify-between gap-3">
                 <h3 class="text-sm font-semibold uppercase tracking-wide text-base-content/60">Input JSON</h3>
                 <button class="btn btn-sm rounded-xl border border-base-300 bg-white/90 text-base-content shadow-xs hover:border-base-400 hover:bg-base-100" type="button" @click="pasteExample">
@@ -46,7 +46,7 @@
 
               <textarea
                 v-model="jsonInput"
-                class="textarea textarea-bordered min-h-80 w-full font-mono text-sm leading-6"
+                class="textarea textarea-bordered min-h-80 w-full flex-1 font-mono text-sm leading-6"
                 placeholder='{"name":"Danilo","stack":["Nuxt","TypeScript"]}'
                 spellcheck="false"
               />
@@ -59,7 +59,7 @@
               </div>
             </div>
 
-            <div class="flex flex-col gap-2">
+            <div class="flex h-full flex-col gap-2">
               <div class="flex items-center justify-between gap-3">
                 <h3 class="text-sm font-semibold uppercase tracking-wide text-base-content/60">Output</h3>
                 <div class="flex flex-wrap items-center justify-end gap-2">
@@ -75,13 +75,21 @@
                 </div>
               </div>
 
-              <textarea
-                v-model="jsonOutput"
-                :class="outputTextareaClass"
-                placeholder="Formatted JSON will appear here automatically"
-                spellcheck="false"
-                @input="handleOutputInput"
-              />
+              <div :class="outputContainerClass">
+                <pre
+                  v-if="jsonOutput && !hasOutputError"
+                  class="min-h-80 max-h-[500px] flex-1 w-full overflow-auto whitespace-pre-wrap break-all font-mono text-sm leading-6"
+                  v-html="highlightedOutput"
+                />
+                <pre
+                  v-else-if="hasOutputError"
+                  class="min-h-80 max-h-[500px] flex-1 w-full overflow-auto whitespace-pre-wrap break-all font-mono text-sm leading-6 text-red-700"
+                >{{ jsonOutput }}</pre>
+                <pre
+                  v-else
+                  class="min-h-80 max-h-[500px] flex-1 w-full overflow-auto font-mono text-sm leading-6 text-base-content/30"
+                >Formatted JSON will appear here automatically</pre>
+              </div>
 
               <div class="flex flex-wrap items-center gap-2">
                 <span class="badge badge-ghost">{{ outputSize }} characters</span>
@@ -131,7 +139,6 @@ const jsonInput = ref('')
 const jsonOutput = ref('')
 const outputMode = ref<'format' | 'minify'>('format')
 const hasOutputError = ref(false)
-const lastEditedPanel = ref<'input' | 'output'>('input')
 
 const exampleJson = `{
   "name": "Danilo Pinotti",
@@ -148,9 +155,37 @@ const inputByteSize = computed(() => formatBytes(new TextEncoder().encode(jsonIn
 const outputByteSize = computed(() => formatBytes(new TextEncoder().encode(jsonOutput.value).byteLength))
 const inputTokens = computed(() => estimateTokens(jsonInput.value))
 const outputTokens = computed(() => estimateTokens(jsonOutput.value))
-const outputTextareaClass = computed(() => hasOutputError.value
-  ? 'textarea textarea-bordered min-h-80 w-full border-red-300 bg-red-50/80 font-mono text-sm leading-6 text-red-700'
-  : 'textarea textarea-bordered min-h-80 w-full bg-base-200/40 font-mono text-sm leading-6')
+const outputContainerClass = computed(() => hasOutputError.value
+  ? 'flex flex-1 flex-col rounded-2xl border border-red-300 bg-red-50/80 px-3 py-2'
+  : 'flex flex-1 flex-col rounded-2xl border border-base-300 bg-base-200/40 px-3 py-2')
+
+function syntaxHighlight(json: string): string {
+  const escaped = json
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+
+  return escaped.replace(
+    /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+    (match) => {
+      if (/^"/.test(match)) {
+        if (/:$/.test(match)) {
+          return `<span class="text-amber-600 font-medium">${match}</span>`
+        }
+        return `<span class="text-green-600">${match}</span>`
+      }
+      if (match === 'true' || match === 'false') {
+        return `<span class="text-purple-600">${match}</span>`
+      }
+      if (match === 'null') {
+        return `<span class="text-slate-400">${match}</span>`
+      }
+      return `<span class="text-blue-600">${match}</span>`
+    },
+  )
+}
+
+const highlightedOutput = computed(() => syntaxHighlight(jsonOutput.value))
 
 function formatBytes(bytes: number): string {
   if (bytes === 0) return '0 B'
@@ -175,14 +210,7 @@ function tryParseJson(sourceText: string) {
   return JSON.parse(sourceText)
 }
 
-function getTransformSource() {
-  if (lastEditedPanel.value === 'output' && jsonOutput.value.trim())
-    return jsonOutput.value
-
-  return jsonInput.value
-}
-
-function formatJson(sourceText = getTransformSource()) {
+function formatJson(sourceText = jsonInput.value) {
   try {
     const parsed = tryParseJson(sourceText)
     jsonOutput.value = outputMode.value === 'minify'
@@ -210,7 +238,6 @@ function clearAll() {
   jsonOutput.value = ''
   outputMode.value = 'format'
   hasOutputError.value = false
-  lastEditedPanel.value = 'input'
 }
 
 function pasteExample() {
@@ -218,13 +245,7 @@ function pasteExample() {
   outputMode.value = 'format'
 }
 
-function handleOutputInput() {
-  lastEditedPanel.value = 'output'
-  hasOutputError.value = false
-}
-
 watch(jsonInput, () => {
-  lastEditedPanel.value = 'input'
   outputMode.value = 'format'
 
   if (!jsonInput.value.trim()) {

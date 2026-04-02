@@ -11,9 +11,9 @@
 </template>
 
 <script setup>
-const tool = useTools().find(t => t.to === '/tools/json-formatter-validator')
+const tool = useTools().find(t => t.to === '/tools/json-formatter')
 const { url: siteUrl } = useSiteConfig()
-const pageUrl = `${siteUrl}/tools/json-formatter-validator`
+const pageUrl = `${siteUrl}/tools/json-formatter`
 const title = 'Online JSON Formatter, Validator & Minifier'
 const description = 'Format, validate and minify JSON online — free, private and entirely in your browser. Paste raw JSON, pretty-print with 2-space indentation, minify for transport or catch syntax errors instantly. No data is sent to any server.'
 

@@ -43,9 +43,9 @@ export const useTools = (): Tool[] => [
     iconClass: 'text-red-500',
   },
   {
-    label: 'JSON Formatter/Validator',
-    description: 'Format, validate and minify JSON data',
-    to: '/tools/json-formatter-validator',
+    label: 'JSON Formatter & Converter',
+    description: 'Format, minify and convert JSON to TOON',
+    to: '/tools/json-formatter',
     icon: 'heroicons:code-bracket-square',
     iconClass: 'text-amber-500',
   },

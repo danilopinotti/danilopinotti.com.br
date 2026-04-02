@@ -12,7 +12,7 @@ export default defineEventHandler(async () => {
     { loc: '/tools/base64', changefreq: 'monthly', priority: 0.7 },
     { loc: '/tools/document-generator', changefreq: 'monthly', priority: 0.7 },
     { loc: '/tools/device-battery-life-estimator', changefreq: 'monthly', priority: 0.7 },
-    { loc: '/tools/json-formatter-validator', changefreq: 'monthly', priority: 0.7 },
+    { loc: '/tools/json-formatter', changefreq: 'monthly', priority: 0.7 },
     { loc: '/tools/jwt-decoder', changefreq: 'monthly', priority: 0.7 },
     { loc: '/tools/jsonpath-builder', changefreq: 'monthly', priority: 0.7 },
     { loc: '/presentations', changefreq: 'monthly', priority: 0.8 },

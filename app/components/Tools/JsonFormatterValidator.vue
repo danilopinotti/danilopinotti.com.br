@@ -7,8 +7,8 @@
             <Icon name="heroicons:code-bracket-square" />
             JSON utility
           </div>
-          <h2 class="mb-1 text-xl font-bold text-gray-900">Validate, format and minify JSON without leaving the browser</h2>
-          <p class="text-sm text-base-content/70">Paste raw JSON, pretty-print it for inspection or minify it for transport. Parsing happens locally and returns clear validation feedback.</p>
+          <h2 class="mb-1 text-xl font-bold text-gray-900">Format, minify and convert JSON without leaving the browser</h2>
+          <p class="text-sm text-base-content/70">Paste raw JSON to pretty-print, minify or convert it to TOON. Everything runs locally in your browser.</p>
         </div>
 
       </div>
@@ -114,7 +114,7 @@
               <li>Formatting happens automatically while you type or paste.</li>
               <li>Formatting uses 2-space indentation for readability.</li>
               <li>Minify removes whitespace without changing the JSON structure.</li>
-              <li>Parsing errors are shown directly in the output panel.</li>
+              <li>TOON is a compact, token-efficient format designed for LLM prompts.</li>
             </ul>
           </div>
         </div>
@@ -131,14 +131,54 @@
         </div>
       </div>
     </div>
+
+    <div class="mt-6 card border border-base-300 bg-base-100 shadow-sm">
+      <div class="card-body gap-4">
+        <div class="flex items-center justify-between gap-3">
+          <h2 class="card-title text-base md:text-lg">
+            <Icon name="fa6-solid:file-lines" class="text-teal-500" />
+            TOON Output
+            <a class="text-xs font-normal text-base-content/40 hover:text-base-content/70 transition-colors" href="https://toonformat.dev" target="_blank">Token-Oriented Object Notation</a>
+          </h2>
+          <SharedButtonsCopy class="btn btn-sm rounded-xl border border-base-300 bg-white text-base-content shadow-xs hover:border-base-400 hover:bg-base-100" label="Copy" :text="toonOutput" />
+        </div>
+
+        <div :class="toonContainerClass">
+          <pre
+            v-if="toonOutput && !hasToonError"
+            class="min-h-40 max-h-[500px] w-full overflow-auto whitespace-pre-wrap break-all font-mono text-sm leading-6"
+            v-html="highlightedToonOutput"
+          />
+          <pre
+            v-else-if="hasToonError"
+            class="min-h-40 max-h-[500px] w-full overflow-auto whitespace-pre-wrap break-all font-mono text-sm leading-6 text-red-700"
+          >{{ toonOutput }}</pre>
+          <pre
+            v-else
+            class="min-h-40 max-h-[500px] w-full overflow-auto font-mono text-sm leading-6 text-base-content/30"
+          >TOON output will appear here automatically</pre>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="badge badge-ghost">{{ toonSize }} characters</span>
+          <span class="badge badge-ghost">{{ toonLines }} lines</span>
+          <span class="badge badge-ghost">Size {{ toonByteSize }}</span>
+          <span class="badge badge-ghost">{{ toonTokens.toLocaleString() }} tokens</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { encode as toonEncode } from '@toon-format/toon'
+
 const jsonInput = ref('')
 const jsonOutput = ref('')
+const toonOutput = ref('')
 const outputMode = ref<'format' | 'minify'>('format')
 const hasOutputError = ref(false)
+const hasToonError = ref(false)
 
 const exampleJson = `{
   "name": "Danilo Pinotti",
@@ -149,15 +189,22 @@ const exampleJson = `{
 
 const inputSize = computed(() => jsonInput.value.length.toLocaleString())
 const outputSize = computed(() => jsonOutput.value.length.toLocaleString())
+const toonSize = computed(() => toonOutput.value.length.toLocaleString())
 const inputLines = computed(() => jsonInput.value ? jsonInput.value.split('\n').length : 0)
 const outputLines = computed(() => jsonOutput.value ? jsonOutput.value.split('\n').length : 0)
+const toonLines = computed(() => toonOutput.value ? toonOutput.value.split('\n').length : 0)
 const inputByteSize = computed(() => formatBytes(new TextEncoder().encode(jsonInput.value).byteLength))
 const outputByteSize = computed(() => formatBytes(new TextEncoder().encode(jsonOutput.value).byteLength))
+const toonByteSize = computed(() => formatBytes(new TextEncoder().encode(toonOutput.value).byteLength))
 const inputTokens = computed(() => estimateTokens(jsonInput.value))
 const outputTokens = computed(() => estimateTokens(jsonOutput.value))
+const toonTokens = computed(() => estimateTokens(toonOutput.value))
 const outputContainerClass = computed(() => hasOutputError.value
   ? 'flex flex-1 flex-col rounded-2xl border border-red-300 bg-red-50/80 px-3 py-2'
   : 'flex flex-1 flex-col rounded-2xl border border-base-300 bg-base-200/40 px-3 py-2')
+const toonContainerClass = computed(() => hasToonError.value
+  ? 'flex flex-col rounded-2xl border border-red-300 bg-red-50/80 px-3 py-2'
+  : 'flex flex-col rounded-2xl border border-base-300 bg-base-200/40 px-3 py-2')
 
 function syntaxHighlight(json: string): string {
   const escaped = json
@@ -186,6 +233,61 @@ function syntaxHighlight(json: string): string {
 }
 
 const highlightedOutput = computed(() => syntaxHighlight(jsonOutput.value))
+
+function highlightToonValue(v: string): string {
+  if (v === 'true' || v === 'false') return `<span class="text-purple-600">${v}</span>`
+  if (v === 'null') return `<span class="text-slate-400">${v}</span>`
+  if (/^-?\d+(\.\d+)?([eE][+-]?\d+)?$/.test(v)) return `<span class="text-blue-600">${v}</span>`
+  if (v.startsWith('"')) return `<span class="text-green-600">${v}</span>`
+  return `<span class="text-green-600">${v}</span>`
+}
+
+function highlightToonDelimited(values: string, delimiter: string): string {
+  return values
+    .split(delimiter)
+    .map(v => highlightToonValue(v))
+    .join(`<span class="text-base-content/40">${delimiter}</span>`)
+}
+
+function toonHighlight(toon: string): string {
+  const escaped = toon
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+
+  return escaped.split('\n').map((line) => {
+    const indentMatch = line.match(/^(\s*)/)
+    const indent = indentMatch?.[1] ?? ''
+    const content = line.slice(indent.length)
+
+    // List item prefix: "- ..."
+    if (content.startsWith('- ') || content === '-') {
+      const rest = content.slice(2)
+      return `${indent}<span class="text-base-content/40">- </span>${rest ? highlightToonValue(rest) : ''}`
+    }
+
+    // Key line: key[N]{fields}: value  |  key[N]: values  |  key: value  |  key:
+    const keyMatch = content.match(/^([^[\]{:]+?)(\[\d+[^\]]*\])?(\{[^}]*\})?(: ?)(.*)?$/)
+    if (keyMatch) {
+      const [, key, arrayPart, fieldsPart, colon, value] = keyMatch
+      let result = `<span class="text-amber-600 font-medium">${key}</span>`
+      if (arrayPart) result += `<span class="text-teal-600">${arrayPart}</span>`
+      if (fieldsPart) result += `<span class="text-sky-500">${fieldsPart}</span>`
+      result += `<span class="text-base-content/40">${colon}</span>`
+      if (value) result += highlightToonDelimited(value, ',')
+      return indent + result
+    }
+
+    // Tabular row (indented comma-separated values with no key)
+    if (content.includes(',')) {
+      return indent + highlightToonDelimited(content, ',')
+    }
+
+    return line
+  }).join('\n')
+}
+
+const highlightedToonOutput = computed(() => toonHighlight(toonOutput.value))
 
 function formatBytes(bytes: number): string {
   if (bytes === 0) return '0 B'
@@ -223,6 +325,23 @@ function formatJson(sourceText = jsonInput.value) {
   }
 }
 
+function convertToToon(sourceText = jsonInput.value) {
+  if (!sourceText.trim()) {
+    toonOutput.value = ''
+    hasToonError.value = false
+    return
+  }
+
+  try {
+    const parsed = JSON.parse(sourceText)
+    toonOutput.value = toonEncode(parsed)
+    hasToonError.value = false
+  } catch (error) {
+    toonOutput.value = `Conversion failed\n\n${error instanceof Error ? error.message : 'Unable to convert JSON to TOON.'}`
+    hasToonError.value = true
+  }
+}
+
 function setFormattedOutput() {
   outputMode.value = 'format'
   formatJson()
@@ -236,8 +355,10 @@ function minifyJson() {
 function clearAll() {
   jsonInput.value = ''
   jsonOutput.value = ''
+  toonOutput.value = ''
   outputMode.value = 'format'
   hasOutputError.value = false
+  hasToonError.value = false
 }
 
 function pasteExample() {
@@ -251,9 +372,12 @@ watch(jsonInput, () => {
   if (!jsonInput.value.trim()) {
     jsonOutput.value = ''
     hasOutputError.value = false
+    toonOutput.value = ''
+    hasToonError.value = false
     return
   }
 
   formatJson()
+  convertToToon()
 })
 </script>

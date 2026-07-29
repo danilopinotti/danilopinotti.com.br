@@ -159,6 +159,7 @@
               <div class="rounded-2xl bg-base-200/60 p-4">
                 <div class="mb-1 text-base-content/60">Expires</div>
                 <div class="font-semibold break-words">{{ expirationLabel }}</div>
+                <div v-if="isExpired" class="mt-1 text-sm font-medium text-red-600">{{ expirationRelativeLabel }}</div>
               </div>
             </div>
           </div>
@@ -250,6 +251,41 @@ const expirationLabel = computed(() => {
   return new Date(exp * 1000).toLocaleString('en-US')
 })
 
+const isExpired = computed(() => {
+  const exp = decodedPayloadObject.value?.exp
+
+  if (typeof exp !== 'number')
+    return false
+
+  return exp * 1000 < Date.now()
+})
+
+const expirationRelativeLabel = computed(() => {
+  const exp = decodedPayloadObject.value?.exp
+
+  if (typeof exp !== 'number')
+    return ''
+
+  const diff = Date.now() - exp * 1000
+  return `Expired ${formatRelativeTime(diff)} ago`
+})
+
+function formatRelativeTime(ms: number): string {
+  const seconds = Math.floor(ms / 1000)
+  const minutes = Math.floor(seconds / 60)
+  const hours = Math.floor(minutes / 60)
+  const days = Math.floor(hours / 24)
+  const months = Math.floor(days / 30)
+  const years = Math.floor(days / 365)
+
+  if (years > 0) return `${years} year${years > 1 ? 's' : ''}`
+  if (months > 0) return `${months} month${months > 1 ? 's' : ''}`
+  if (days > 0) return `${days} day${days > 1 ? 's' : ''}`
+  if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''}`
+  if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''}`
+  return `${seconds} second${seconds > 1 ? 's' : ''}`
+}
+
 function syncLineNumbers(panel: 'header' | 'payload') {
   if (panel === 'header') {
     headerScrollTop.value = headerTextareaRef.value?.scrollTop ?? 0
@@ -303,7 +339,7 @@ function decodeJwt() {
     return
   }
 
-  const parts = token.value.trim().split('.')
+  const parts = token.value.trim().replace(/^Bearer\s+/i, '').split('.')
 
   if (parts.length < 2) {
     setInlineError('Expected at least header and payload sections (two dots).')
